@@ -1,0 +1,60 @@
+<% if user_signed_in? %>
+  <h1>Welcome, <%= current_user.name %></h1>
+  
+  <% if current_user.admin? %>
+    <!-- 管理者の場合 -->
+    <p>管理者専用の機能にアクセスできます。</p>
+    <%= link_to "管理者ダッシュボード", admin_root_path, class: "btn btn-primary" %>
+    <p>あなたの日報管理機能にアクセスできます。</p>
+    <div class="reports">
+    <%= link_to "日報を作成", new_report_path, class: "btn btn-success" %>
+    <%= link_to "日報一覧", admin_reports_path, class: "btn btn-secondary" %>
+    </div>
+  <% else %>
+    <!-- 一般ユーザーの場合 -->
+    <p>あなたの日報管理機能にアクセスできます。</p>
+    <%= link_to "日報を作成", new_report_path, class: "btn btn-success" %>
+    <%= link_to "日報一覧", reports_path, class: "btn btn-secondary" %>
+  <% end %>
+
+  <h2 class="mb-4">新着日報</h2>
+
+  <% if @reports.any? %>
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>タイトル</th>
+          <th>作成者</th>
+          <th>作成日</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reports.each do |report| %>
+          <tr>
+            <td><%= report.title %></td>
+            <td><%= report.user.name %></td> <!-- 作成者を表示 -->
+            <td><%= report.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td>
+              <% if current_user.admin? %>
+                <%= link_to "詳細を見る", admin_report_path(report), class: "btn btn-outline-danger btn-sm" %>
+              <% else %>
+                <%= link_to "詳細を見る", report_path(report), class: "btn btn-outline-primary btn-sm" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="alert alert-warning">
+      現在、新着の日報はありません。
+    </div>
+  <% end %>
+  
+<% else %>
+  <h1>Welcome to Daily Report System</h1>
+  <p>アカウントをお持ちでない方は、ユーザー登録をお願いします。</p>
+  <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+  <%= link_to "新規ユーザー登録", new_user_registration_path, class: "btn btn-success" %>
+<% end %>
