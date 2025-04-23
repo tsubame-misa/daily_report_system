@@ -1,0 +1,8 @@
+<h1>管理者ダッシュボード</h1>
+<p>ようこそ、<%= current_user.name %> さん</p>
+
+<!-- ここに管理者用のリンクや情報を追加していきます -->
+<ul class="flex">
+  <li><%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-success" %></li>
+  <li><%= link_to "日報一覧", admin_reports_path, class: "btn btn-success" %></li>
+</ul>
