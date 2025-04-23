@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <div class="card shadow-lg rounded-3">
+    <div class="card-header bg-primary bg-gradient text-white text-uppercase">
+      <h3 class="mb-0 text-center">日報詳細</h3>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title text-primary"><strong>タイトル:</strong> <%= @report.title %></h4>
+
+      <div class="mb-4 border-start border-3 border-primary ps-3">
+        <strong>内容:</strong>
+        <p class="lead"><%= simple_format(@report.content) %></p>
+      </div>
+
+      <ul class="list-unstyled">
+        <li><strong>作成者:</strong> <%= @report.user&.name %></li>
+        <li><strong>作成日時:</strong> <%= @report.created_at.strftime("%Y-%m-%d %H:%M") %></li>
+      </ul>
+    </div>
+    <div class="card-footer text-center">
+      <% if current_user.admin? %>
+        <%= link_to "日報一覧へ戻る", admin_reports_path, class: "btn btn-outline-danger btn-lg" %>
+      <% else %>
+        <%= link_to "日報一覧へ戻る", reports_path, class: "btn btn-outline-secondary btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<h1 class="mb-4">日報一覧</h1>
+<%= link_to "新規作成", new_report_path, class: "btn btn-success" %>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+      <th>作成日時</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.id %></td>
+        <td><%= report.title %></td>
+        <td><%= report.user&.name %></td>
+        <td><%= l(report.created_at, format: :short) %></td>
+        <td>
+          <%= link_to "詳細", admin_report_path(report), class: "btn btn-primary btn-sm" %>
+          <%= button_to "削除", admin_report_path(report), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
