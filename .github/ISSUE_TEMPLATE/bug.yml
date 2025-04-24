@@ -10,6 +10,15 @@ body:
       description: 発生している問題について簡単に記載してください
     validations:
       required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: 期待される動作
+      description: 本来はどのように動作するべきだったかを記載してください
+    validations:
+      required: false
+
   - type: textarea
     id: notes
     attributes:
