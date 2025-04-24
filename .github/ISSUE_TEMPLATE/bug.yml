@@ -1,0 +1,19 @@
+name: バグ報告
+description: バグや不具合の報告用テンプレート
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: バグの内容
+      description: 発生している問題について簡単に記載してください
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 補足情報
+      description: その他必要な情報があれば記載してください（任意）
+    validations:
+      required: false

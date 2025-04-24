@@ -1,0 +1,33 @@
+name: 機能リクエスト
+description: 新しい機能や改善点のリクエスト用テンプレート
+title: "[Feature Request] "
+labels: ["enhancement", "feature_request"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 概要
+      description: どんな機能を希望しますか？簡潔に記載してください
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 背景・目的
+      description: なぜこの機能が必要か、どんな課題を解決するか記載してください
+    validations:
+      required: false
+  - type: textarea
+    id: details
+    attributes:
+      label: 詳細
+      description: 実現したい内容や要件を具体的に記載してください（任意）
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: 補足情報
+      description: その他参考情報や関連issue等があれば記載してください（任意）
+    validations:
+      required: false
