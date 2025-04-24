@@ -1,0 +1,19 @@
+name: タスク
+description: タスクや作業内容を記載するためのテンプレート
+title: "[Task] "
+labels: []
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 概要
+      description: このタスクで何をするか簡単に記載してください
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 補足情報
+      description: その他必要な情報があれば記載してください（任意）
+    validations:
+      required: false

@@ -1,0 +1,19 @@
+name: 要望・提案
+description: 新機能や改善案の提案用テンプレート
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: 要望・提案内容
+      description: どんな機能や改善を希望するか簡単に記載してください
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: 補足情報
+      description: その他必要な情報があれば記載してください（任意）
+    validations:
+      required: false
