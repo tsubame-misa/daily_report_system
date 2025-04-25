@@ -1,18 +1,18 @@
-user = User.find_or_create_by!(email: 'admin@example.com') do |user|
+admin = User.find_or_create_by!(email: 'admin@example.com') do |user|
   user.name = 'Admin'
   user.password = 'password'
   user.password_confirmation = 'password'
   user.role = 0
 end
 
-Report.find_or_create_by!(title: 'test_title', contents: 'test_contents') do |report|
-  report.user_id = user.id
-  report.title = 'test_title'
-  report.contents = 'test_contents'
+Report.find_or_create_by!(title: 'admin_title1', contents: 'admin_contents1') do |report|
+  report.user_id = admin.id
+  report.title = 'admin_title1'
+  report.contents = 'admin_contents1'
 end
 
-Report.find_or_create_by!(title: 'test2_title', contents: 'test2_contents') do |report|
-  report.user_id = user.id
-  report.title = 'test2_title'
-  report.contents = 'test2_contents'
+Report.find_or_create_by!(title: 'admin_title2', contents: 'admin_contents2') do |report|
+  report.user_id = admin.id
+  report.title = 'admin_title2'
+  report.contents = 'admin_contents2'
 end
