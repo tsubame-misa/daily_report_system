@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "home#index"
   
   resources :users, only: [:index, :show, :edit, :update, :destroy]
-  resources :reports
+  resources :reports, controller: "admin/reports"
 
   namespace :admin do
     get 'reports/index'

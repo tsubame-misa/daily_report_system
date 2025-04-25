@@ -2,7 +2,11 @@ class Admin::ReportsController < Admin::BaseController
   before_action :set_report, only: [:show, :destroy]
 
   def index
-    @reports = Report.all.order(created_at: :desc)
+    if current_user.role == 0
+      @reports = Report.all.order(created_at: :desc)
+    else
+      @reports = Report.where(user_id: current_user.id).order(created_at: :desc)
+    end
   end
 
   def show
