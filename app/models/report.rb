@@ -7,5 +7,5 @@ class Report < ApplicationRecord
   validates :report_date, uniqueness: { 
     scope: :user_id,
     message: "同じ日付の日報はすでに存在します。"
-  }
+  }, presence: true
 end
