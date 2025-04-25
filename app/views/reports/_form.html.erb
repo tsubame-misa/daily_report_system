@@ -2,22 +2,22 @@
 <%= form_with model: @report, local: true, html: {class: form_class } do |form| %>
 
   <%# reportsテーブルのdateカラムが作られたら、 :date を追加する%>
-  <%# 例： <% form.label :date  '日付' %> 
-  <%# 例： <%= form.date_field :date  placeholder: '年 /月 /日' %> 
-  
+  <%# 例： <% form.label :date  '日付' %>
+  <%# 例： <%= form.date_field :date  placeholder: '年 /月 /日' %>
+
   <div>
-    <%= form.label  '日付' %>
+    <%= form.label :report_date, '日付' %>
     <div>
-      <%= form.date_field  placeholder: '年 /月 /日' %>
+      <%= form.date_field :report_date, placeholder: '年 /月 /日' %>
     </div>
   </div>
 
   <div>
     <p>氏名</p>
     <% if defined?(current_user) && current_user %>
-      <p><%= current_user.name %></p> 
+      <p><%= current_user.name %></p>
     <% else %>
-      <p>（ログインユーザー情報なし）</p> 
+      <p>（ログインユーザー情報なし）</p>
     <% end %>
   </div>
 
@@ -38,4 +38,4 @@
   <div>
     <%= form.submit '登録' %>
   </div>
-<% end %> 
+<% end %>
