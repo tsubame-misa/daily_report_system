@@ -1,5 +1,5 @@
 
-<%= form_with model: @report, local: true, html: {class: form_class } do |form| %>
+<%= form_with model: @report, method: :patch,local: true, html: {class: form_class } do |form| %>
 
 
   <div>
@@ -12,9 +12,9 @@
   <div>
     <p>氏名</p>
     <% if defined?(current_user) && current_user %>
-      <p><%= current_user.name %></p> 
+      <p><%= current_user.name %></p>
     <% else %>
-      <p>（ログインユーザー情報なし）</p> 
+      <p>（ログインユーザー情報なし）</p>
     <% end %>
   </div>
 
@@ -35,4 +35,4 @@
   <div>
     <%= form.submit '登録' %>
   </div>
-<% end %> 
+<% end %>
