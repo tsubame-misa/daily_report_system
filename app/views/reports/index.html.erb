@@ -6,7 +6,7 @@
       <th>ID</th>
       <th>タイトル</th>
       <th>作成者</th>
-      <th>作成日時</th>
+      <th>日付</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -16,7 +16,7 @@
         <td><%= report.id %></td>
         <td><%= report.title %></td>
         <td><%= report.user&.name %></td>
-        <td><%= l(report.created_at, format: :short) %></td>
+        <td><%= report.report_date.strftime("%Y-%m-%d") %></td>
         <td>
           <%= link_to "詳細", report_path(report), class: "btn btn-primary btn-sm" %>
           <%= button_to "削除", report_path(report), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
