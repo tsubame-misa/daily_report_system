@@ -1,0 +1,60 @@
+
+<h1>日報管理システム</h1>
+<h2>日報新規作成ページ</h2>
+
+
+<% if @report.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>以下のエラーがあります:</h4>
+    <ul>
+      <% @report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @report, local: true do |form| %>
+
+  <%# reportsテーブルのdateカラムが作られたら、 :date を追加する%>
+  <%# 例： <% form.label :date  '日付' %> 
+  <%# 例： <%= form.date_field :date  placeholder: '年 /月 /日' %> 
+  
+  <div>
+    <%= form.label  '日付' %>
+    <div>
+      <%= form.date_field  placeholder: '年 /月 /日' %>
+    </div>
+  </div>
+
+  <div>
+    <p>氏名</p>
+    <% if defined?(current_user) && current_user %>
+      <p><%= current_user.name %></p> 
+    <% else %>
+      <p>（ログインユーザー情報なし）</p> 
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :title, 'タイトル' %>
+    <div>
+      <%= form.text_field :title %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :contents, '内容' %>
+    <div>
+      <%= form.text_area :contents %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit '登録' %>
+  </div>
+<% end %> 
+
+<div>
+  <%= link_to '一覧に戻る', reports_path %> 
+</div>
