@@ -6,6 +6,7 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def show
+    @report = Report.find(params[:id])
   end
 
   def destroy
