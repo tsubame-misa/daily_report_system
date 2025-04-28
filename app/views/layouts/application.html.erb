@@ -41,9 +41,9 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <% if user_signed_in? && current_user.admin? %>
               <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "日報一覧", admin_reports_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "日報一覧(全ユーザー)", admin_reports_path, class: "nav-link" %></li>
             <% elsif user_signed_in? %>
-              <li class="nav-item"><%= link_to "日報一覧", reports_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "日報一覧(個人)", reports_path, class: "nav-link" %></li>
             <% end %>
           </ul>
 
@@ -73,9 +73,9 @@
         <li class="nav-item"><%= link_to "ホーム", root_path, class: "nav-link" %></li>
         <% if user_signed_in? && current_user.admin? %>
           <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "日報一覧", admin_reports_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "日報一覧(全ユーザー)", admin_reports_path, class: "nav-link" %></li>
         <% elsif user_signed_in? %>
-          <li class="nav-item"><%= link_to "日報一覧", reports_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "日報一覧(個人)", reports_path, class: "nav-link" %></li>
         <% end %>
 
         <% if user_signed_in? %>
