@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "home#index"
-  
-  resources :users, only: [:index, :show, :edit, :update, :destroy]
+  root 'home#index'
+
+  resources :users, only: %i[index show edit update destroy]
   resources :reports
 
   namespace :admin do
@@ -15,8 +15,10 @@ Rails.application.routes.draw do
     get 'users/edit'
     get 'users/update'
     get 'users/destroy'
-    root "dashboard#index"
-    resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :reports, only: [:index, :show, :destroy]
+    root 'dashboard#index'
+    resources :users, only: %i[index new create edit update destroy]
+    resources :reports, only: %i[index show destroy]
   end
+
+  match '*path', to: 'application#not_found', via: :all
 end
