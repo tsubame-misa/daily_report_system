@@ -7,6 +7,7 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find_by(id: params[:id], user_id: current_user.id)
+    not_found unless @report
   end
   
   def new
