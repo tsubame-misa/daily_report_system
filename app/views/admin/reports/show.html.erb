@@ -24,9 +24,9 @@
     </div>
     <div class="card-footer text-center">
       <% if current_user.admin? %>
-        <%= link_to "日報一覧へ戻る", admin_reports_path, class: "btn btn-outline-danger btn-lg" %>
+        <%= link_to "日報一覧(全ユーザー)へ戻る", admin_reports_path, class: "btn btn-outline-danger btn-lg" %>
       <% else %>
-        <%= link_to "日報一覧へ戻る", reports_path, class: "btn btn-outline-secondary btn-lg" %>
+        <%= link_to "日報一覧(個人)へ戻る", reports_path, class: "btn btn-outline-secondary btn-lg" %>
       <% end %>
     </div>
   </div>
