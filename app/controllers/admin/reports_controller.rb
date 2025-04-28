@@ -5,6 +5,10 @@ class Admin::ReportsController < Admin::BaseController
     @reports = Report.all
                      .includes(:user)
                      .sorted_by(params[:sort], params[:direction])
+    if params[:keyword].present?
+      @reports = @reports.joins(:user)
+                      .where('reports.title LIKE :keyword OR users.name LIKE :keyword', keyword: "%#{keyword}%")
+    end
   end
 
   def show; end
