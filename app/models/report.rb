@@ -1,5 +1,7 @@
 class Report < ApplicationRecord
   belongs_to :user
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
 
   scope :sorted_by, ->(column, direction) {
     column = %w[report_date title].include?(column) ? column : "report_date"
@@ -15,7 +17,7 @@ class Report < ApplicationRecord
 
   validates :title, presence: true
   validates :contents, presence: true
-  validates :report_date, uniqueness: { 
+  validates :report_date, uniqueness: {
     scope: :user_id,
     message: "同じ日付の日報はすでに存在します。"
   }, presence: true
