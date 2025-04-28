@@ -12,9 +12,9 @@
   <div>
     <p>氏名</p>
     <% if defined?(current_user) && current_user %>
-      <p><%= current_user.name %></p> 
+      <p><%= current_user.name %></p>
     <% else %>
-      <p>（ログインユーザー情報なし）</p> 
+      <p>（ログインユーザー情報なし）</p>
     <% end %>
   </div>
 
@@ -33,6 +33,6 @@
   </div>
 
   <div>
-    <%= form.submit '登録' %>
+    <%= form.submit (defined?(submit_name) && submit_name.present?) ? submit_name : '登録' %>
   </div>
-<% end %> 
+<% end %>
