@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :reports, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # role が 0 なら管理者
   def admin?
