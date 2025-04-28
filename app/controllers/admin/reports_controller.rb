@@ -2,10 +2,19 @@ class Admin::ReportsController < Admin::BaseController
   before_action :set_report, only: %i[show destroy]
 
   def index
-    @reports = Report.all
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+    if start_date.present? && end_date.present? && start_date > end_date
+      @date_range_error = '開始日が終了日より後になっています。正しい日付範囲を指定してください。'
+      @reports = Report.all
+                     .includes(:user)
+                     .sorted_by(params[:sort], params[:direction])
+    else
+      @reports = Report.all
                      .includes(:user)
                      .by_date_range(params[:start_date],params[:end_date])
                      .sorted_by(params[:sort], params[:direction])
+    end
   end
 
   def show; end
