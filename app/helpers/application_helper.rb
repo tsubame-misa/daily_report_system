@@ -8,7 +8,11 @@ module ApplicationHelper
       arrow = "↓"
     end
 
-    link_to arrow, admin_reports_path(sort: column, direction: direction), class: "btn btn-sm btn-outline-secondary"
+    if current_user.admin?
+      link_to arrow, admin_reports_path(sort: column, direction: direction), class: "btn btn-sm btn-outline-secondary"
+    else
+      link_to arrow, reports_path(sort: column, direction: direction), class: "btn btn-sm btn-outline-secondary"
+    end
   end
 end
 
