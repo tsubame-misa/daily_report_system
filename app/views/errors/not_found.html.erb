@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h1 class="display-4 mb-4">404 Not Found</h1>
+      <p class="lead mb-4">お探しのページは存在しません。</p>
+      <p class="mb-4">5秒後に自動的にトップページに移動します。</p>
+      <div class="mb-4">
+        <%= link_to "トップページに戻る", root_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() {
+    window.location.href = "<%= root_path %>";
+  }, 5000);
+</script> 
