@@ -1,22 +1,21 @@
 class Admin::ReportsController < Admin::BaseController
-  before_action :set_report, only: [:show, :destroy]
+  before_action :set_report, only: %i[show destroy]
 
   def index
     @reports = Report.all.order(created_at: :desc)
   end
 
-  def show
-    @report = Report.find(params[:id])
-  end
+  def show; end
 
   def destroy
     @report.destroy
-    redirect_to admin_reports_path, notice: "日報が削除されました。"
+    redirect_to admin_reports_path, notice: '日報が削除されました。'
   end
 
   private
 
   def set_report
-    @report = Report.find(params[:id])
+    @report = Report.find_by(id: params[:id])
+    not_found unless @report
   end
 end
