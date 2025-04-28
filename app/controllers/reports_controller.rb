@@ -23,14 +23,6 @@ class ReportsController < ApplicationController
     end
   end
 
-  private
-  def report_params
-    params.require(:report).permit(:title, :contents, :report_date)
-  end
-
-  def edit
-  end
-
   def update
     @report.update(report_params)
     if @report.save
