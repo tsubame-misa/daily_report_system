@@ -7,6 +7,11 @@
       <h4 class="card-title text-primary"><strong>タイトル:</strong> <%= @report.title %></h4>
 
       <div class="mb-4 border-start border-3 border-primary ps-3">
+        <strong>日付:</strong>
+        <p class="lead"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
+      </div>
+
+      <div class="mb-4 border-start border-3 border-primary ps-3">
         <strong>内容:</strong>
         <p class="lead"><%= simple_format(@report.contents) %></p>
       </div>
@@ -14,6 +19,7 @@
       <ul class="list-unstyled">
         <li><strong>作成者:</strong> <%= @report.user&.name %></li>
         <li><strong>作成日時:</strong> <%= @report.created_at.strftime("%Y-%m-%d %H:%M") %></li>
+        <li><strong>更新日時:</strong> <%= @report.updated_at.strftime("%Y-%m-%d %H:%M") %></li>
       </ul>
     </div>
     <div class="card-footer text-center">
