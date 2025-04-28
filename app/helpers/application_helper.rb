@@ -3,10 +3,12 @@ module ApplicationHelper
     if params[:sort] == column
       direction = params[:direction] == "asc" ? "desc" : "asc"
       arrow = params[:direction] == "asc" ? "↑" : "↓"
-      link_to arrow, admin_reports_path(sort: column, direction: direction), class: "btn btn-sm btn-outline-secondary"
     else
-      link_to "↓", admin_reports_path(sort: column, direction: "desc"), class: "btn btn-sm btn-outline-secondary"
+      direction = "asc"
+      arrow = "↓"
     end
+
+    link_to arrow, admin_reports_path(sort: column, direction: direction), class: "btn btn-sm btn-outline-secondary"
   end
 end
 
