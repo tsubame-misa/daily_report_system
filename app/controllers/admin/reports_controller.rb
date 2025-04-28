@@ -4,6 +4,7 @@ class Admin::ReportsController < Admin::BaseController
   def index
     @reports = Report.all
                      .includes(:user)
+                     .by_date_range(params[:start_date],params[:end_date])
                      .sorted_by(params[:sort], params[:direction])
   end
 
