@@ -11,6 +11,8 @@ class Report < ApplicationRecord
     where(report_date: start_date..end_date) if start_date.present? && end_date.present?
   }
 
+  # validates :date, presence: true
+
   validates :title, presence: true
   validates :contents, presence: true
   validates :report_date, uniqueness: { 
