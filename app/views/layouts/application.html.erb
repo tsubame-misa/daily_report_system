@@ -43,7 +43,7 @@
               <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %></li>
               <li class="nav-item"><%= link_to "日報一覧(全ユーザー)", admin_reports_path, class: "nav-link" %></li>
             <% elsif user_signed_in? %>
-              <li class="nav-item"><%= link_to "日報一覧(個人)", reports_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "日報一覧", reports_path, class: "nav-link" %></li>
             <% end %>
           </ul>
 
