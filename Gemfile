@@ -77,3 +77,6 @@ end
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
+
+# エラーページの日本語化
+gem 'rails-i18n', '~> 7.0'
