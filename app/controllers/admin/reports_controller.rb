@@ -2,7 +2,9 @@ class Admin::ReportsController < Admin::BaseController
   before_action :set_report, only: %i[show destroy]
 
   def index
-    @reports = Report.all.order(created_at: :desc)
+    @reports = Report.all
+                     .includes(:user)
+                     .sorted_by(params[:sort], params[:direction])
   end
 
   def show; end
