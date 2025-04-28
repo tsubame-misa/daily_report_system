@@ -4,6 +4,9 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.where(user_id: current_user.id).order(created_at: :desc)
+    @reports = Report.where(user_id: current_user.id)
+                   .by_date_range(params[:start_date], params[:end_date])
+                   .order(created_at: :desc)
   end
 
   def show
