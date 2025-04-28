@@ -33,6 +33,6 @@
   </div>
 
   <div>
-    <%= form.submit '登録' %>
+    <%= form.submit (defined?(submit_name) && submit_name.present?) ? submit_name : '登録' %>
   </div>
 <% end %>

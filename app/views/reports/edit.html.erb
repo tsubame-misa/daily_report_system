@@ -12,7 +12,7 @@
 <% end %>
 
 
-<%= render 'form', report: @report, form_class: 'edit-form' %>
+<%= render 'form', report: @report, form_class: 'edit-form', submit_name: '更新' %>
 
 <div>
   <%= button_to "削除", report_path(@report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
