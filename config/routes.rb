@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :users, only: %i[index show edit update destroy]
-  resources :reports
+  resources :reports do
+    resources :favorites, only: %i[create destroy]
+  end
 
   namespace :admin do
     get 'reports/index'
