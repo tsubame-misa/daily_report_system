@@ -14,7 +14,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.save
       redirect_to admin_users_path, notice: "ユーザーが作成されました。"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
