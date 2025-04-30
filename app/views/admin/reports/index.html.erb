@@ -1,11 +1,14 @@
-<h1 class="mb-4">日報一覧</h1>
+<h1 class="mb-4">日報一覧(全ユーザー)</h1>
 <table class="table table-striped">
   <thead class="table-dark">
     <tr>
       <th>ID</th>
       <th>タイトル</th>
       <th>作成者</th>
-      <th>日付</th>
+      <th>
+        日付
+        <%= sort_arrow("report_date") %>
+      </th>
       <th>操作</th>
     </tr>
   </thead>

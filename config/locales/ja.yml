@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      report:
+        report_date: ""
+        title: ""
+        contents: ""
+    errors:
+      models:
+        report:
+          attributes:
+            report_date:
+              blank: "日付を入力してください"
+              taken: "同じ日付の日報はすでに存在します"
+            title:
+              blank: "タイトルを入力してください"
+            contents:
+              blank: "内容を入力してください"

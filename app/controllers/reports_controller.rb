@@ -3,7 +3,16 @@ class ReportsController < ApplicationController
   before_action :set_report, only: [:edit, :update, :destroy]
 
   def index
-    @reports = Report.where(user_id: current_user.id).order(created_at: :desc)
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+    if start_date.present? && end_date.present? && start_date > end_date
+      @date_range_error = '開始日が終了日より後になっています。正しい日付範囲を指定してください。'
+      @reports = Report.where(user_id: current_user.id).order(created_at: :desc)
+    else
+      @reports = Report.where(user_id: current_user.id)
+                     .by_date_range(start_date, end_date)
+                     .order(created_at: :desc)
+    end
   end
 
   def show
@@ -45,6 +54,6 @@ class ReportsController < ApplicationController
   end
 
   def report_params
-    params.require(:report).permit(:title, :contents, :report_date)
+    params.require(:report).permit(:report_date, :title, :contents)
   end
 end
