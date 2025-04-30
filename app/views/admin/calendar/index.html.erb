@@ -1,0 +1,57 @@
+<div class="mb-1">
+  <div class="d-flex justify-content-between align-items-baseline">
+    <h1 class="fs-2 mb-0">
+      <%= current_user.admin? ? "日報一覧(個人)" : "日報一覧" %>
+    </h1>
+    <%= link_to new_report_path, class: "btn btn-success" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      新規作成
+    <% end %>
+  </div>
+  <%= render_search_bar(path: reports_path) %>
+
+  <div class="d-flex align-items-center justify-content-between my-3">
+  <% prev_date = (@selected_date - 1.day).strftime("%Y-%m-%d") %>
+  <% next_date = (@selected_date + 1.day).strftime("%Y-%m-%d") %>
+
+  <%= link_to "← 前日", admin_calendar_path(date: prev_date), class: "btn btn-outline-secondary" %>
+
+  <span class="fs-4 fw-bold">
+    <%= @selected_date.strftime("%Y年%m月%d日") %>
+  </span>
+
+  <%= link_to "翌日 →",admin_calendar_path(date: next_date), class: "btn btn-outline-secondary" %>
+</div>
+
+
+  <table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+      <th>
+        日付
+        <%= sort_arrow("report_date") %>
+      </th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.id %></td>
+        <td><%= report.title %></td>
+        <td><%= report.user&.name %></td>
+        <td><%= report.report_date.strftime("%Y-%m-%d") %></td>
+        <td class="d-flex align-items-center">
+          <div class="me-2">
+            <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
+          </div>
+          <%= link_to "詳細", report_path(report), class: "btn btn-primary btn-sm m-0 me-2" %>
+          <%= button_to "削除", report_path(report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
