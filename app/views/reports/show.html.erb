@@ -1,32 +1,41 @@
 <div class="container mt-5">
-  <div class="card shadow-lg rounded-3">
-    <div class="card-header bg-primary bg-gradient text-white text-uppercase">
-      <h3 class="mb-0 text-center">日報詳細</h3>
-    </div>
+  <div class="card shadow-sm mb-4">
     <div class="card-body">
-      <h4 class="card-title text-primary"><strong>タイトル:</strong> <%= @report.title %></h4>
-      <div class="mb-4 border-start border-3 border-primary ps-3">
-        <strong>日付:</strong>
-        <p class="lead"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
+      <p class="text-muted mb-3" style="font-size: 0.9rem;"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center">
+          <h2 class="card-title mb-0 me-2"><%= @report.title %></h2>
+          <%# 編集アイコン %>
+          <%= link_to edit_report_path(@report), class: "btn btn-link text-secondary p-0 me-1  icon-hover", title: "編集", "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
+            <i class="bi bi-pencil-square fs-5"></i>
+          <% end %>
+          <%# 削除アイコン %>
+          <%= button_to report_path(@report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-link text-danger p-0 icon-hover", title: "削除", form: { style: 'display:inline-block;' }, "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
+            <i class="bi bi-trash fs-5"></i>
+          <% end %>
+        </div>
+        <div class="ms-auto">
+          <%= render partial: "favorite", locals: { report: @report, favorite: @report.favorites.find_by(user_id: current_user.id) } %>
+        </div>
       </div>
 
-      <div class="mb-4 border-start border-3 border-primary ps-3">
-        <strong>内容:</strong>
-        <p class="lead"><%= simple_format(@report.contents) %></p>
+      <div class="border-top border-3 border-muted my-4"></div>
+
+      
+
+      <div class="bg-light p-3 rounded mb-3">
+        <%= simple_format(@report.contents) %>
       </div>
 
-      <ul class="list-unstyled">
-        <li><strong>作成日時:</strong> <%= @report.created_at.strftime("%Y-%m-%d %H:%M") %></li>
-        <li><strong>更新日時:</strong> <%= @report.updated_at.strftime("%Y-%m-%d %H:%M") %></li>
-      </ul>
-    </div>
-    <div class="card-footer d-flex align-items-center justify-content-center">
-      <div class="me-3">
-        <%= render partial: "favorite", locals: { report: @report, favorite: @report.favorites.find_by(user_id: current_user.id) } %>
+      <div class="text-end text-muted" style="font-size: 0.8rem;">
+        <small>更新日: <%= @report.updated_at.strftime("%Y-%m-%d") %></small>
       </div>
-      <%= link_to current_user.admin? ? '日報一覧(個人)に戻る' : '日報一覧に戻る', reports_path, class: "btn btn-outline-secondary btn-lg me-2" %>
-      <%= link_to "編集", edit_report_path(@report), class: "btn btn-outline-primary btn-lg me-2" %>
-      <%= button_to "削除", report_path(@report), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-lg", form: { style: 'display:inline-block;' } %>
     </div>
   </div>
+  
+  <div class="">
+    <%= link_to current_user.admin? ? '日報一覧に戻る' : '日報一覧に戻る', reports_path, class: "btn btn-primary btn-lg", style: "background-color: #343A40; color: #ffffff; border-color: #343A40;" %>
+  </div>
+
 </div>
