@@ -6,13 +6,16 @@ class FavoritesController < ApplicationController
     @favorite = current_user.favorites.build(report: @report)
 
     if @favorite.save
-      # HACK: 全体再読み込みではなく、1レポート、もしくはお気に入りボタンのみ再読込したい
-      # render turbo_stream: turbo_stream.replace(
-      #   'favorite-button-' + @report.id,
-      #   partial: 'reports/favorite',
-      #   locals: { report: @report, favorite: @favorite },
-      # )
-      redirect_to request.referer
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            "favorite-button-#{@report.id}",
+            partial: 'reports/favorite',
+            locals: { report: @report, favorite: @favorite }
+          )
+        end
+        format.html { redirect_to request.referer }
+      end
     else
       redirect_to request.referer
     end
@@ -23,11 +26,15 @@ class FavoritesController < ApplicationController
     @report = @favorite.report
 
     @favorite.destroy
-    # render turbo_stream: turbo_stream.replace(
-    #   'favorite-button-' + @report.id,
-    #   partial: 'reports/favorite',
-    #   locals: { report: @report, favorite: @favorite },
-    # )
-    redirect_to request.referer
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "favorite-button-#{@report.id}",
+          partial: 'reports/favorite',
+          locals: { report: @report, favorite: nil }
+        )
+      end
+      format.html { redirect_to request.referer }
+    end
   end
 end
