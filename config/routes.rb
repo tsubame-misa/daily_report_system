@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'report_calendar/index'
-  get 'report_calendar/show'
-  get 'report_calendar/new'
-  get 'report_calendar/day'
+  resources :report_calendar, only: %i[index show new day]
   devise_for :users
   root 'home#index'
 
