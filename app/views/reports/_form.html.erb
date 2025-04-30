@@ -9,10 +9,10 @@
 
   <div>
     <p>氏名</p>
-    <% if defined?(current_user) && current_user %>
-      <p><%= current_user.name %></p>
+    <% if @report.user %>
+      <p><%= @report.user.name %></p>
     <% else %>
-      <p>（ログインユーザー情報なし）</p>
+      <p>（ユーザー情報なし）</p>
     <% end %>
   </div>
 
