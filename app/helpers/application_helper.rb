@@ -7,8 +7,11 @@ module ApplicationHelper
       direction = "asc"
       arrow = "↓"
     end
-
-    link_to arrow, admin_reports_path(sort: column, direction: direction), class: "btn btn-sm btn-outline-secondary"
+    base_params = request.query_parameters.merge(sort: column, direction: direction)
+    link_to arrow, url_for(base_params), class: "btn btn-sm btn-outline-secondary"
+  end
+  def render_filter(path:)
+    render partial: 'layouts/filter', locals: { filter_path: path }
   end
 end
 

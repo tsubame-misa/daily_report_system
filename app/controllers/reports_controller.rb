@@ -8,11 +8,11 @@ class ReportsController < ApplicationController
     keyword = params[:q]
     if start_date.present? && end_date.present? && start_date > end_date
       @date_range_error = '開始日が終了日より後になっています。正しい日付範囲を指定してください。'
-      @reports = Report.where(user_id: current_user.id).order(created_at: :desc)
+      @reports = Report.where(user_id: current_user.id).sorted_by(params[:sort], params[:direction])
     else
       @reports = Report.where(user_id: current_user.id)
                      .by_date_range(start_date, end_date)
-                     .order(created_at: :desc)
+                     .sorted_by(params[:sort], params[:direction])
     end
     if keyword.present?
       @reports = @reports.joins(:user)
