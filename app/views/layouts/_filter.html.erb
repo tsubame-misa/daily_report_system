@@ -5,6 +5,7 @@
 <% end %>
 
 <%= form_with url: filter_path, method: :get, local: true, class: "row g-2 align-items-end mb-3" do |f| %>
+  <%= hidden_fields_except(:start_date, :end_date) %>
   <div class="col-auto">
     <%= f.label :start_date, "開始日" %>
     <%= f.date_field :start_date, value: params[:start_date], class: "form-control" %>
