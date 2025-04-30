@@ -50,7 +50,5 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: daily_report_system_production
-  username: daily_report_system
-  password: <%= ENV["DAILY_REPORT_SYSTEM_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  url: <%= ENV['PRODUCTION_DATABASE_URL'] %>
