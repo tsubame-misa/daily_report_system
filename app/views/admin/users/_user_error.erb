@@ -2,7 +2,7 @@
   <div class="alert alert-danger">
     <h4>以下のエラーがあります:</h4>
     <ul>
-      <% user.errors.full_messages.each do |message| %>
+      <% user.ordered_errors.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
