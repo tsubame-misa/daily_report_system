@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
     end
     if keyword.present?
       @reports = @reports.joins(:user)
-                         .where('reports.title LIKE :keyword OR users.name LIKE :keyword', keyword: "%#{keyword}%")
+                         .where('reports.title LIKE :kw OR reports.contents LIKE :kw OR users.name LIKE :kw', kw: "%#{keyword}%")
     end
   end
 
