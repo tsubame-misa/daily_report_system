@@ -10,33 +10,18 @@ class ReportCalendarController < ApplicationController
     @selected_month = @selected_date.month
     @selected_year = @selected_date.year
 
-    p '+++++++++++++++++++++++++++++'
-    p @selected_date
-    p @selected_month
-    p @selected_year
-    p '+++++++++++++++++++++++++++++'
-
     first_day = Date.new(@selected_year, @selected_month, 1)
     last_day = first_day.end_of_month
     start_date = first_day.beginning_of_week(:sunday)
     end_date = last_day.end_of_week(:sunday)
 
-    p '+++++++++++++++++++++++++++++'
-    p start_date
-    p end_date
-    p '+++++++++++++++++++++++++++++'
-
     @dates = (start_date..end_date).to_a.in_groups_of(7)
 
-    p '+++++++++++++++++++++++++++++'
-    p @dates
-    p '+++++++++++++++++++++++++++++'
-
     reports = Report.includes(:user)
-                    .where(created_at: start_date.beginning_of_day..end_date.end_of_day)
+                    .where(report_date: start_date.beginning_of_day..end_date.end_of_day)
 
-    @reports_by_date = reports.group_by { |r| r.created_at.to_date }
-                              .transform_values { |reports| reports.take(5) }
+    @reports_by_date = reports.group_by(&:report_date)
+                              .transform_values { |daily_reports| daily_reports.take(3) }
     # @reports = Report.includes(:user).where(user_id: current_user.id)
 
     # if start_date.present? && end_date.present? && start_date > end_date

@@ -126,62 +126,108 @@ button#menu-toggle {
 
 .calendar {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 2px;
     table-layout: fixed;
-    /* テーブルのレイアウトを固定 */
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ccc;
+    /* セル間の色を設定 */
 }
 
-.calendar th,
-.calendar td {
-    border: 1px solid #ccc;
-    vertical-align: top;
+.calendar th {
+    border: none;
     padding: 5px;
-    height: calc((100vh - 200px) / 6);
-    /* 画面の高さからヘッダーと余白を引いて6分割 */
+    background-color: #f8f9fa;
+    text-align: center;
+    font-weight: bold;
+}
+
+.calendar td {
+    border: none;
+    padding: 0;
+    height: calc((100vh - 150px) / 5);
     width: 14.2%;
     position: relative;
-}
-
-.calendar td {
     overflow: hidden;
+    text-align: center;
+    background-color: white;
 }
 
 .calendar-content {
     position: absolute;
-    top: 30px;
+    top: 35px;
     left: 5px;
     right: 5px;
     bottom: 5px;
     overflow-y: auto;
-    max-height: calc(100% - 30px);
+    max-height: calc(100% - 35px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* カレンダーコンテナのスタイル */
 .calendar-container {
     margin: 20px;
     max-height: calc(100vh - 100px);
-    /* 画面の高さからヘッダーと余白を引く */
     overflow: hidden;
-}
-
-.outside-month {
-    background-color: #f9f9f9;
-    color: #999;
 }
 
 .date-label {
     font-weight: bold;
-    margin-bottom: 4px;
-    position: sticky;
+    position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     background-color: inherit;
     z-index: 1;
+    width: 100%;
+    text-align: center;
+    padding: 4px 0;
+}
+
+.report-list {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .report-item {
     font-size: 0.85em;
-    margin-top: 3px;
+    margin: 3px 0;
     overflow-wrap: anywhere;
-    padding: 2px;
-    border-bottom: 1px solid #eee;
+    width: 90%;
+    text-align: center;
+
+    a {
+        text-decoration: none;
+        color: #333;
+        display: block;
+        padding: 8px, 0;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+    }
+}
+
+.report-item:last-child {
+    border-bottom: none;
+}
+
+.outside-month {
+    background-color: #f9f9fa;
+    color: #999;
 }
