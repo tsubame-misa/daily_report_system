@@ -1,12 +1,10 @@
-<% path = current_user.admin? ? admin_reports_path : reports_path %>
-
 <% if defined?(@date_range_error) && @date_range_error.present? %>
   <div class="alert alert-danger" role="alert">
     <%= @date_range_error %>
   </div>
 <% end %>
 
-<%= form_with url: path, method: :get, local: true, class: "row g-2 align-items-end mb-3" do |f| %>
+<%= form_with url: filter_path, method: :get, local: true, class: "row g-2 align-items-end mb-3" do |f| %>
   <div class="col-auto">
     <%= f.label :start_date, "開始日" %>
     <%= f.date_field :start_date, value: params[:start_date], class: "form-control" %>
@@ -19,6 +17,6 @@
     <%= f.submit "絞り込む", class: "btn btn-primary" %>
   </div>
   <div class="col-auto align-items-end">
-    <%= link_to "クリア", path, class: "btn btn-secondary m-0" %>
+    <%= link_to "クリア", filter_path, class: "btn btn-secondary m-0" %>
   </div>
 <% end %>

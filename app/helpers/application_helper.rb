@@ -15,5 +15,8 @@ module ApplicationHelper
       link_to arrow, reports_path(base_params), class: "btn btn-sm btn-outline-secondary"
     end
   end
+  def render_filter(path:)
+    render partial: 'layouts/filter', locals: { filter_path: path }
+  end
 end
 
