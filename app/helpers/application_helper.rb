@@ -8,12 +8,7 @@ module ApplicationHelper
       arrow = "↓"
     end
     base_params = request.query_parameters.merge(sort: column, direction: direction)
-
-    if current_user.admin?
-      link_to arrow, admin_reports_path(base_params), class: "btn btn-sm btn-outline-secondary"
-    else
-      link_to arrow, reports_path(base_params), class: "btn btn-sm btn-outline-secondary"
-    end
+    link_to arrow, url_for(base_params), class: "btn btn-sm btn-outline-secondary"
   end
   def render_filter(path:)
     render partial: 'layouts/filter', locals: { filter_path: path }
