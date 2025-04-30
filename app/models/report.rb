@@ -15,10 +15,10 @@ class Report < ApplicationRecord
 
   # validates :date, presence: true
 
-  validates :title, presence: true
-  validates :contents, presence: true
-  validates :report_date, uniqueness: {
+  validates :report_date, uniqueness: { 
     scope: :user_id,
     message: "同じ日付の日報はすでに存在します。"
   }, presence: true
+  validates :title, presence: true
+  validates :contents, presence: true
 end

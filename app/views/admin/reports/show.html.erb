@@ -28,13 +28,13 @@
       </div>
       <div class="me-2">
         <% if current_user.admin? %>
-          <%= link_to "日報一覧へ戻る", admin_reports_path, class: "btn btn-outline-danger btn-lg" %>
+          <%= link_to "日報一覧(全ユーザー)へ戻る", admin_reports_path, class: "btn btn-outline-danger btn-lg" %>
         <% else %>
-          <%= link_to "日報一覧へ戻る", reports_path, class: "btn btn-outline-secondary btn-lg" %>
+          <%= link_to "日報一覧(個人)へ戻る", reports_path, class: "btn btn-outline-secondary btn-lg" %>
         <% end %>
       </div>
       <%= link_to "編集", edit_report_path(@report), class: "btn btn-outline-primary btn-lg me-2" %>
       <%= button_to "削除", report_path(@report), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-lg", form: { style: 'display:inline-block;' } %>
-      </div>
+     </div>
   </div>
 </div>

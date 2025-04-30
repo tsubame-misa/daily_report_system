@@ -1,6 +1,8 @@
 <div class="mb-1">
   <div class="d-flex justify-content-between align-items-baseline">
-    <h1 class="fs-2 mb-0">日報一覧</h1>
+    <h1 class="fs-2 mb-0">
+      <%= current_user.admin? ? "日報一覧(個人)" : "日報一覧" %>
+    </h1>
     <%= link_to new_report_path, class: "btn btn-success" do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
       新規作成
