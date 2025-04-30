@@ -1,18 +1,5 @@
-<div class="mt-3 mb-3">
-  <ul class="nav nav-tabs">
-    <!-- 日別タブ -->
-    <li class="nav-item">
-      <%= link_to "日別表示",
-          admin_calendar_path(date: @selected_date.strftime("%Y-%m-%d")),
-          class: "nav-link #{ action_name == 'index' ? 'active bg-white text-dark' : 'text-dark' }" %>
-    </li>
-    <!-- 月別タブ -->
-    <li class="nav-item">
-      <%= link_to "月別表示",
-          admin_calendar_month_path(month: @selected_date.beginning_of_month.strftime("%Y-%m")),
-          class: "nav-link #{ action_name == 'month' ? 'active bg-white text-dark' : 'text-dark' }" %>
-    </li>
-  </ul>
+<div class="mb-3">
+  <%= render 'layouts/calendar_tab' %>
 </div>
 <h2><%= "#{@selected_year}年#{@selected_month}月の日報カレンダー" %></h2>
 
