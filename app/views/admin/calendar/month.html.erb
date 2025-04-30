@@ -21,7 +21,7 @@
             <div class="report-list">
               <% @reports_by_date[date]&.each do |report| %>
                 <div class="report-item">
-                  <%= link_to "#{report.user.name} の日報", report_path(report) %>
+                  <%= link_to "#{report.user.name}", admin_report_path(report) %>
                 </div>
               <% end %>
             </div>
