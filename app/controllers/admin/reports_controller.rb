@@ -3,22 +3,22 @@ class Admin::ReportsController < Admin::BaseController
 
   def index
     start_date = params[:start_date]
-    end_date = params[:end_date]
+    end_date   = params[:end_date]
+    keyword    = params[:q]
+    sort       = params[:sort]
+    direction  = params[:direction]
+  
+    @reports = Report.includes(:user).all
+  
     if start_date.present? && end_date.present? && start_date > end_date
       @date_range_error = '開始日が終了日より後になっています。正しい日付範囲を指定してください。'
-      @reports = Report.all
-                     .includes(:user)
-                     .sorted_by(params[:sort], params[:direction])
     else
-      @reports = Report.all
-                     .includes(:user)
-                     .by_date_range(params[:start_date],params[:end_date])
-                     .sorted_by(params[:sort], params[:direction])
+      @reports = @reports.by_date_range(start_date, end_date)
     end
-    if params[:q].present?
-      @reports = @reports.joins(:user)
-                         .where('reports.title LIKE :kw OR reports.contents LIKE :kw OR users.name LIKE :kw', kw: "%#{params[:q]}%")
-    end
+  
+    @reports = @reports
+                 .sorted_by(sort, direction)
+                 .keyword_search(keyword)
   end
 
   def show; end
