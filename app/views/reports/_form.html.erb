@@ -1,6 +1,4 @@
-
-<%= form_with model: @report, local: true, html: {class: form_class } do |form| %>
-
+<%= form_with model: @report, url: defined?(@admin_context) && @admin_context ? [:admin, @report] : @report, local: true, html: {class: form_class } do |form| %>
 
   <div>
     <%= form.label :report_date, '日付' %>

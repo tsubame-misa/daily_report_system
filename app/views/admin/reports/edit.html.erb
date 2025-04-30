@@ -1,0 +1,19 @@
+<h2>日報編集ページ</h2>
+
+<% if @report.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>以下のエラーがあります:</h4>
+    <ul>
+      <% @report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render 'reports/form', report: @report, form_class: 'edit-form', submit_name: '更新' %>
+
+<div>
+  <%= button_to "削除", admin_report_path(@report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+  <%= link_to '日報一覧に戻る', admin_reports_path %>
+</div>
