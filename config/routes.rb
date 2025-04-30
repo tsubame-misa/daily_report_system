@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'report_calendar/index'
+  get 'report_calendar/show'
+  get 'report_calendar/new'
+  get 'report_calendar/day'
   devise_for :users
   root 'home#index'
 
