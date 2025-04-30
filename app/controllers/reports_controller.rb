@@ -8,6 +8,7 @@ class ReportsController < ApplicationController
     keyword    = params[:q]
     sort       = params[:sort]
     direction  = params[:direction]
+    @favorite_only = ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
   
     @reports = Report.includes(:user).where(user_id: current_user.id)
   
@@ -20,6 +21,10 @@ class ReportsController < ApplicationController
     @reports = @reports
                  .sorted_by(sort, direction)
                  .keyword_search(keyword)
+    if @favorite_only
+      favorite_report_ids = current_user.favorites.pluck(:report_id)
+      @reports = @reports.where(id: favorite_report_ids)
+    end
   end
 
   def show; end
