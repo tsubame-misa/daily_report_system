@@ -1,6 +1,6 @@
 <h1 class="mb-4">日報一覧(全ユーザー)</h1>
 <%= render_filter(path: admin_reports_path) %>
-<%=render "reports/search_bar"%>
+<%= render_search_bar(path: admin_reports_path) %>
 <table class="table table-striped">
   <thead class="table-dark">
     <tr>

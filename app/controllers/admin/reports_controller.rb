@@ -9,14 +9,15 @@ class Admin::ReportsController < Admin::BaseController
       @reports = Report.all
                      .includes(:user)
                      .sorted_by(params[:sort], params[:direction])
-    if params[:keyword].present?
-      @reports = @reports.joins(:user)
-                      .where('reports.title LIKE :keyword OR users.name LIKE :keyword', keyword: "%#{keyword}%")
     else
       @reports = Report.all
                      .includes(:user)
                      .by_date_range(params[:start_date],params[:end_date])
                      .sorted_by(params[:sort], params[:direction])
+    end
+    if params[:q].present?
+      @reports = @reports.joins(:user)
+                         .where('reports.title LIKE :kw OR reports.contents LIKE :kw OR users.name LIKE :kw', kw: "%#{params[:q]}%")
     end
   end
 
