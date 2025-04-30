@@ -31,8 +31,7 @@ class ReportsController < ApplicationController
   end
 
   def update
-    @report.update(report_params)
-    if @report.save
+    if @report.update(report_params)
       redirect_to reports_path, notice: '日報を更新しました。'
     else
       render :edit, status: :unprocessable_entity
