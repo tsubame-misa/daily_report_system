@@ -123,3 +123,65 @@ button#menu-toggle {
         display: none !important;
     }
 }
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    /* テーブルのレイアウトを固定 */
+}
+
+.calendar th,
+.calendar td {
+    border: 1px solid #ccc;
+    vertical-align: top;
+    padding: 5px;
+    height: calc((100vh - 200px) / 6);
+    /* 画面の高さからヘッダーと余白を引いて6分割 */
+    width: 14.2%;
+    position: relative;
+}
+
+.calendar td {
+    overflow: hidden;
+}
+
+.calendar-content {
+    position: absolute;
+    top: 30px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    overflow-y: auto;
+    max-height: calc(100% - 30px);
+}
+
+/* カレンダーコンテナのスタイル */
+.calendar-container {
+    margin: 20px;
+    max-height: calc(100vh - 100px);
+    /* 画面の高さからヘッダーと余白を引く */
+    overflow: hidden;
+}
+
+.outside-month {
+    background-color: #f9f9f9;
+    color: #999;
+}
+
+.date-label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    z-index: 1;
+}
+
+.report-item {
+    font-size: 0.85em;
+    margin-top: 3px;
+    overflow-wrap: anywhere;
+    padding: 2px;
+    border-bottom: 1px solid #eee;
+}
