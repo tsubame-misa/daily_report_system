@@ -5,6 +5,11 @@ ja:
         report_date: ""
         title: ""
         contents: ""
+      user:
+        name: ""
+        email: ""
+        password: ""
+        password_confirmation: ""
     errors:
       models:
         report:
@@ -16,3 +21,17 @@ ja:
               blank: "タイトルを入力してください"
             contents:
               blank: "内容を入力してください"
+        user:
+          attributes:
+            name:
+              blank: "名前を入力してください"
+            email:
+              blank: "メールアドレスを入力してください"
+              invalid: "メールアドレスの形式が不正です"
+              taken: "このメールアドレスはすでに使用されています"
+            password:
+              blank: "パスワードを入力してください"
+              too_short: "パスワードは %{count} 文字以上で入力してください"
+            password_confirmation:
+              blank: "パスワード（確認用）を入力してください"
+              confirmation: "パスワードと確認用パスワードが一致しません"
