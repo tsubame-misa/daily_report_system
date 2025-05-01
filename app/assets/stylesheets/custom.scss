@@ -122,12 +122,32 @@ button#menu-toggle {
     gap: 12px;
     pointer-events: none;
 }
+
 #toast-container .toast {
     pointer-events: auto;
 }
 
 .toast-header {
     border-bottom: none !important;
+}
+
+.menu-toggle {
+    display: none !important;
+}
+
+
+
+.custom-dark-button {
+    background-color: #343A40;
+    color: #ffffff;
+    border-color: #343A40;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #495057;
+        color: #ffffff;
+        border-color: #495057;
+    }
 }
 
 .toast-body {
@@ -140,13 +160,16 @@ button#menu-toggle {
     border: 1px solid #198754 !important;
     background: #fff !important;
 }
+
 .toast-title-success {
     color: #198754 !important;
 }
+
 .toast-header-success {
     background: #e9fbe8 !important;
     color: #198754 !important;
 }
+
 .toast-body-success {
     background: #e9fbe8 !important;
     border-radius: 1px;
@@ -157,13 +180,16 @@ button#menu-toggle {
     border: 1px solid #dc3545 !important;
     background: #fff !important;
 }
+
 .toast-title-danger {
     color: #dc3545 !important;
 }
+
 .toast-header-danger {
     background: #fdeaea !important;
     color: #dc3545 !important;
 }
+
 .toast-body-danger {
     background: #fdeaea !important;
 }
@@ -215,4 +241,17 @@ button#menu-toggle {
 .login-button:active {
     outline: none !important;
     box-shadow: none !important;
+}
+
+.black-btn-bg {
+    background-color: #343A40;
+    color: #ffffff;
+    border-color: #343A40;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #495057;
+        color: #ffffff;
+        border-color: #495057;
+    }
 }
