@@ -33,7 +33,7 @@
                 <% if has_report %>
                   <%= link_to date.day, report_path(@report_dates[date]), class: 'report-date' %>
                 <% else %>
-                  <span class="date"><%= date.day %></span>
+                  <%= link_to date.day, new_report_path(date: date.strftime('%Y-%m-%d')), class: 'new-report-date' %>
                 <% end %>
               </td>
             <% end %>
