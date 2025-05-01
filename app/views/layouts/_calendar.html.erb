@@ -1,5 +1,3 @@
-<h2><%= "#{@selected_year}年#{@selected_month}月の日報カレンダー" %></h2>
-
 <!-- 📅 カレンダー表示 -->
 <table class="calendar">
   <thead>
@@ -14,11 +12,20 @@
       <tr>
         <% week.each do |date| %>
           <td class="<%= 'outside-month' if date.month != @selected_month %>">
-            <div class="date-label"><%= date.day %></div>
+            <div class="date-label">
+              <%= link_to date.day, defined?(admin_calendar_day_path) ? admin_calendar_day_path(date: date.strftime('%Y-%m-%d')) : calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-dark" %>
+            </div>
             <div class="report-list">
               <% @reports_by_date[date]&.each do |report| %>
                 <div class="report-item">
-                  <%= link_to "#{report.user.name} の日報", report_path(report) %>
+                  <%= link_to defined?(admin_report_path) ? admin_report_path(report) : report_path(report), class: "d-flex align-items-center gap-1" do %>
+                    <% if defined?(current_user) && report.favorites.exists?(user_id: current_user.id) %>
+                      <i class="bi bi-heart-fill"></i>
+                    <% else %>
+                      <i class="bi bi-heart"></i>
+                    <% end %>
+                    <span><%= report.user.name %></span>
+                  <% end %>
                 </div>
               <% end %>
             </div>
