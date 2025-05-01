@@ -14,7 +14,6 @@ class Admin::UsersController < Admin::BaseController
     if @user.save
       redirect_to admin_users_path, notice: "ユーザーが作成されました。"
     else
-      flash.now[:alert] = @user.formatted_error_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -27,7 +26,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.update(permitted_params || user_params)
       redirect_to admin_users_path, notice: "ユーザー情報が更新されました。"
     else
-      flash.now[:alert] = @user.formatted_error_messages
+      flash.now[:alert] = "ユーザー情報の更新に失敗しました。"
       render :edit, status: :unprocessable_entity
     end
   end

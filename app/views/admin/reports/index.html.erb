@@ -1,4 +1,33 @@
 <h1 class="mb-4">日報一覧(全ユーザー)</h1>
 <%= render_filter(path: admin_reports_path) %>
-<%= render_search_bar(path: admin_reports_path) %>
-<%= render partial: "share/reports_table", locals: { reports: @reports, admin: true } %>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+      <th>
+        日付
+        <%= sort_arrow("report_date") %>
+      </th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.id %></td>
+        <td><%= report.title %></td>
+        <td><%= report.user&.name %></td>
+        <td><%= report.report_date.strftime("%Y-%m-%d") %></td>
+        <td class="d-flex align-items-center">
+          <div class="me-2">
+            <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
+          </div>
+          <%= link_to "詳細", admin_report_path(report), class: "btn btn-primary btn-sm m-0 me-2" %>
+          <%= button_to "削除", admin_report_path(report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

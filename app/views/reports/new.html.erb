@@ -3,6 +3,18 @@
 <h2>日報新規作成ページ</h2>
 
 
+<% if @report.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>以下のエラーがあります:</h4>
+    <ul>
+      <% @report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= render 'form', report: @report, form_class: '渡したいclass名' %>
 
 

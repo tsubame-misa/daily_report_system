@@ -13,15 +13,5 @@ module ApplicationHelper
   def render_filter(path:)
     render partial: 'layouts/filter', locals: { filter_path: path }
   end
-  def render_search_bar(path:)
-    render partial: 'layouts/search_bar', locals: { search_path: path }
-
-  end
-  def hidden_fields_except(*except_keys)
-    request.query_parameters.except(*except_keys).map do |key, value|
-      hidden_field_tag key, value
-    end.join.html_safe
-  end
-
 end
 

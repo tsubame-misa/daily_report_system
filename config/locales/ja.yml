@@ -2,14 +2,14 @@ ja:
   activerecord:
     attributes:
       report:
-        report_date: "日付"
-        title: "タイトル"
-        contents: "内容"
+        report_date: ""
+        title: ""
+        contents: ""
       user:
-        name: "名前"
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "パスワード(確認用)"
+        name: ""
+        email: ""
+        password: ""
+        password_confirmation: ""
     errors:
       models:
         report:
