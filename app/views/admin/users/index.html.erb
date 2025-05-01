@@ -22,9 +22,12 @@
         <td><%= user.admin? ? "管理者" : "一般" %></td>
         <td class="d-flex align-items-center">
           <%= link_to "編集", edit_admin_user_path(user), class: "btn btn-sm me-2 btn-outline-dark" %>
-          <%= button_to "削除", admin_user_path(user), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-outline-dark btn-hover-red" %>
+          <button type="button" class="btn btn-sm btn-outline-dark btn-hover-red" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= user.id %>">
+            削除
+          </button>
         </td>
       </tr>
+      <%= render "share/delete_alert", modal_id:user.id, confirm_text: "削除", message: "本当に削除しますか？", confirm_path:admin_user_path(user) %>
     <% end %>
   </tbody>
 </table>

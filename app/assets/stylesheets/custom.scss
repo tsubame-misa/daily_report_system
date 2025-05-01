@@ -255,3 +255,18 @@ button#menu-toggle {
         border-color: #495057;
     }
 }
+
+.btn-hover-red:hover {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+    border-color: #dc3545 !important;
+}
+
+.delete-modal-footer {
+    border-top: none !important;
+}
+
+.delete-modal-body {
+    padding: 1rem 1rem 0 !important;
+
+}

@@ -1,0 +1,27 @@
+
+
+<%confirm_text = local_assigns[:confirm_text].nil? ? "OK" : local_assigns[:confirm_text] %>
+
+<%= debug(confirm_path)%>
+<div class="modal fade" id="deleteModal-<%= modal_id %>" tabindex="-1" aria-labelledby="deleteModalLabel-<%= modal_id %>" aria-hidden="true">
+　  <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-6" id="deleteModalLabel-<%= modal_id %>">warning</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+            </div>
+            <div class="modal-body delete-modal-body">
+                <%= message %>
+            </div>
+            <div class="modal-footer delete-modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-dark" data-bs-dismiss="modal">キャンセル</button>
+                <% if confirm_path.present? %>
+                    <%= button_to confirm_text, confirm_path, method: :delete, class: "btn btn-sm btn-outline-dark btn-hover-red" %>
+                <% else %>
+                    <!-- confirm_path がない場合はモーダルを閉じるだけ -->
+                    <button type="button" class="btn btn-sm btn-outline-dark" data-bs-dismiss="modal"><%= confirm_text %></button>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
