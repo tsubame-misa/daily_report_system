@@ -10,6 +10,6 @@
   <li class="nav-item">
     <%= link_to "日別表示",
         admin_calendar_path(date: @selected_date.strftime("%Y-%m-%d")),
-        class: "nav-link #{ action_name == 'day' ? 'active bg-white text-dark' : 'text-dark' }" %>
+        class: "nav-link #{ action_name == 'index' ? 'active bg-white text-dark' : 'text-dark' }" %>
   </li>
 </ul>
