@@ -9,7 +9,7 @@
                   <span class="nav-link text-dark py-1 pe-2 right-line"><%= current_user.name %> さん</span>
                 </li>
                 <li class="nav-item">
-                  <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false, confirm: "本当にログアウトしますか？" },
+                  <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_confirm: "本当にログアウトしますか？" },
                   class: "btn logout-button px-2 py-2" %>
                 </li>
               </div>
