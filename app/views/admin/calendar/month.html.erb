@@ -27,7 +27,7 @@
         <% week.each do |date| %>
           <td class="<%= 'outside-month' if date.month != @selected_month %>">
             <div class="date-label">
-              <%= link_to date.day, admin_calendar_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-dark" %>
+              <%= link_to date.day, admin_calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-dark" %>
             </div>
             <div class="report-list">
               <% @reports_by_date[date]&.each do |report| %>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
-    get 'calendar', to: 'calendar#index'
+    get 'calendar/day', to: 'calendar#day'
     get 'calendar/month', to: 'calendar#month'
     # resources :calendar, only: %i[index]
 

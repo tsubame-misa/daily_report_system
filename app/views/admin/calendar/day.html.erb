@@ -19,13 +19,13 @@
   <% prev_date = (@selected_date - 1.day).strftime("%Y-%m-%d") %>
   <% next_date = (@selected_date + 1.day).strftime("%Y-%m-%d") %>
 
-  <%= link_to "← 前日", admin_calendar_path(date: prev_date), class: "btn btn-outline-secondary" %>
+  <%= link_to "← 前日", admin_calendar_day_path(date: prev_date), class: "btn btn-outline-secondary" %>
 
   <span class="fs-4 fw-bold">
     <%= @selected_date.strftime("%Y年%m月%d日") %>
   </span>
 
-  <%= link_to "翌日 →",admin_calendar_path(date: next_date), class: "btn btn-outline-secondary" %>
+  <%= link_to "翌日 →",admin_calendar_day_path(date: next_date), class: "btn btn-outline-secondary" %>
 </div>
 
 

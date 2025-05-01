@@ -1,5 +1,5 @@
 class Admin::CalendarController < ApplicationController
-  def index
+  def day
     start_date = params[:start_date]
     end_date   = params[:end_date]
     keyword    = params[:q]
