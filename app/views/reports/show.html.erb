@@ -7,10 +7,10 @@
         <div class="d-flex align-items-center">
           <h2 class="card-title mb-0 me-2"><%= @report.title %></h2>
           <%= link_to edit_report_path(@report), class: "btn btn-link text-secondary p-0 me-1  icon-hover", title: "編集", "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
-            <i class="bi bi-pencil-square fs-5"></i>
+            <i class="bi bi-pencil-square fs-3 ms-3"></i>
           <% end %>
           <%= button_to report_path(@report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-link text-danger p-0 icon-hover", title: "削除", form: { style: 'display:inline-block;' }, "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
-            <i class="bi bi-trash fs-5"></i>
+            <i class="bi bi-trash fs-3 me-3"></i>
           <% end %>
         </div>
         <div class="ms-auto">
