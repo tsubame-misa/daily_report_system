@@ -96,6 +96,11 @@
     <!-- オーバーレイ -->
     <div class="menu-overlay" id="menu-overlay"></div>
   </header>
+
+  <% if user_signed_in? && current_user.admin? %>
+    <%= render 'shared/admin/sub_nav' %>
+  <% end %> 
+
     <div class="container mt-4">
       <%= yield %>
     </div>
