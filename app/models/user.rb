@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include ErrorMessageFormatter
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -19,10 +21,10 @@ class User < ApplicationRecord
   def ordered_errors
     order = [:name, :email, :password, :password_confirmation]
     ordered_messages = []
-  
+
     # 実際にエラーが発生している属性に基づいて順序を適用
     order.each do |attribute|
-    errors.full_messages_for(attribute).each do |message|
+      errors.full_messages_for(attribute).each do |message|
         ordered_messages << message
       end
     end
