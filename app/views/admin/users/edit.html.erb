@@ -21,5 +21,8 @@
     <%= f.label :password_confirmation, "パスワード確認", class: "form-label" %>
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
-  <%= f.submit "更新", class: "btn btn-primary" %>
+  <div class="d-flex  justify-content-end ">
+    <%= link_to "キャンセル", admin_users_path, class: "btn btn-outline-dark me-2" %>
+    <%= f.submit "更新", class: "btn btn-outline-dark" %>
+  </div>
 <% end %>

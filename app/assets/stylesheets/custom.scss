@@ -107,6 +107,13 @@ button#menu-toggle {
     margin-top: 15px;
 }
 
+// ボタンのスタイルをカスタマイズ
+.btn-hover-red:hover {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
 /* 768px 以上では通常のヘッダーメニューを表示 */
 @media (min-width: 768px) {
 
