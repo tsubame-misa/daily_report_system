@@ -107,28 +107,8 @@ button#menu-toggle {
     margin-top: 15px;
 }
 
-// ボタンのスタイルをカスタマイズ
-.btn-hover-red:hover {
-    background-color: #dc3545;
-    color: white;
-    border-color: #dc3545;
-}
-
-/* 768px 以上では通常のヘッダーメニューを表示 */
-@media (min-width: 768px) {
-
-    .sidebar-menu,
-    .menu-overlay {
-        display: none !important;
-    }
-
-    .desktop-menu {
-        display: flex !important;
-    }
-
-    .menu-toggle {
-        display: none !important;
-    }
+.border-right {
+    border-right: 1px solid black;
 }
 
 #toast-container {
@@ -195,4 +175,44 @@ button#menu-toggle {
     border: 1px solid #dc3545 !important;
     background: #fff0f0;
     border-radius: 2px;
+}
+
+.right-line {
+    border-right: 1px solid #000;
+}
+
+.logout-button {
+    background-color: transparent;
+    color: #000 !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.logout-button:hover {
+    color: #dc3545 !important;
+    font-weight: bold !important;
+}
+
+.logout-button:focus,
+.logout-button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.login-button {
+    background-color: transparent;
+    color: #000 !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.login-button:hover {
+    color: #198754 !important;
+    font-weight: bold !important;
+}
+
+.login-button:focus,
+.login-button:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
