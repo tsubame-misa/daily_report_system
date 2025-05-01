@@ -266,6 +266,19 @@ button#menu-toggle {
     border-bottom: none;
 }
 
+.more-link {
+    font-size: 0.8em;
+    margin-top: 2px;
+    text-align: right;
+    padding-right: 5px;
+
+    a {
+        &:hover {
+            text-decoration: underline !important;
+        }
+    }
+}
+
 .outside-month {
     background-color: #f5f5f5;
     color: #999;

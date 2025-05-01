@@ -45,10 +45,15 @@ class Admin::CalendarController < ApplicationController
 
     @dates = (start_date..end_date).to_a.in_groups_of(7)
 
-    reports = Report.includes(:user, :favorites)
-                    .where(report_date: start_date.beginning_of_day..end_date.end_of_day)
+    # 期間内の全レポートを取得
+    all_reports = Report.includes(:user, :favorites)
+                        .where(report_date: start_date.beginning_of_day..end_date.end_of_day)
 
-    @reports_by_date = reports.group_by(&:report_date)
-                              .transform_values { |daily_reports| daily_reports.take(3) }
+    # 日付ごとのレポート数を保持
+    @reports_count_by_date = all_reports.group(:report_date).count
+
+    # カレンダーに表示する各日付の最新3件のレポート
+    @calendar_preview_reports = all_reports.group_by(&:report_date)
+                                           .transform_values { |daily_reports| daily_reports.take(3) }
   end
 end
