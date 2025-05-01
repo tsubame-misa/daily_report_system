@@ -1,5 +1,5 @@
 <h1 class="mb-4">新規ユーザー作成</h1>
-<%= render 'user_error', user: @user %>
+
 <%= form_with model: [:admin, @user], local: true, class: "needs-validation" do |f| %>
   <div class="mb-3">
     <%= f.label :name, "名前", class: "form-label" %>

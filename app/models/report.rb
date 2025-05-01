@@ -1,4 +1,6 @@
 class Report < ApplicationRecord
+  include ErrorMessageFormatter
+
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
@@ -14,12 +16,13 @@ class Report < ApplicationRecord
   }
   scope :keyword_search, ->(kw) {
     return all if kw.blank?
+
     # reports の title, contents と user.name を部分一致で検索
     reports_table = arel_table
     users_table   = User.arel_table
 
-    title_match   = reports_table[:title].matches("%#{kw}%")
-    contents_match= reports_table[:contents].matches("%#{kw}%")
+    title_match = reports_table[:title].matches("%#{kw}%")
+    contents_match = reports_table[:contents].matches("%#{kw}%")
     user_name_match = users_table[:name].matches("%#{kw}%")
 
     joins(:user)
@@ -28,7 +31,7 @@ class Report < ApplicationRecord
 
   # validates :date, presence: true
 
-  validates :report_date, uniqueness: { 
+  validates :report_date, uniqueness: {
     scope: :user_id,
     message: "同じ日付の日報はすでに存在します。"
   }, presence: true
