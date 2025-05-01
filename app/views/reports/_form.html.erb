@@ -5,21 +5,21 @@
   <div class="mb-4">
     <div class="d-flex align-items-center mb-2">
       <%= form.label :report_date, '日付', class: "form-label me-2 mb-0 fw-bold" %>
-      <i class="bi bi-calendar3 fs-5 text-secondary"></i> 
+      <%= form.date_field :report_date, value: report.report_date || Date.today, class: "form-control form-control-lg w-auto" %>
     </div>
-    <%= form.date_field :report_date, class: "form-control form-control-lg" %>
   </div>
+
 
   <div class="mb-3">
     <%= form.label :title, 'タイトル', class: "form-label fw-bold" %> 
-    <%= form.text_field :title, class: "form-control form-control-lg" %> 
+    <%= form.text_field :title, class: "form-control form-control-lg", placeholder: "タイトルを入力してください" %> 
   </div>
 
   <hr class="my-4">
 
   <div class="mb-4">
     <%= form.label :contents, '内容', class: "form-label fw-bold" %>
-    <%= form.text_area :contents, class: "form-control", rows: 10 %> 
+    <%= form.text_area :contents, class: "form-control", rows: 10, placeholder: "今日の業務内容を入力してください。" %> 
   </div>
 
   <div class="d-flex justify-content-end gap-3 mt-5">
