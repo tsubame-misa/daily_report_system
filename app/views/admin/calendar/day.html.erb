@@ -18,8 +18,12 @@
   <div class="d-flex align-items-center justify-content-between my-3">
   <% prev_date = (@selected_date - 1.day).strftime("%Y-%m-%d") %>
   <% next_date = (@selected_date + 1.day).strftime("%Y-%m-%d") %>
+  <% today = Date.today.strftime("%Y-%m-%d") %>
 
-  <%= link_to "← 前日", admin_calendar_day_path(date: prev_date), class: "btn btn-outline-secondary" %>
+  <div class="d-flex align-items-center gap-2">
+    <%= link_to "← 前日", admin_calendar_day_path(date: prev_date), class: "btn btn-outline-secondary" %>
+    <%= link_to "今日", admin_calendar_day_path(date: today), class: "btn btn-outline-primary" %>
+  </div>
 
   <span class="fs-4 fw-bold">
     <%= @selected_date.strftime("%Y年%m月%d日") %>
@@ -36,7 +40,7 @@
       <th>タイトル</th>
       <th>作成者</th>
       <th>
-        日付
+        作成時刻
         <%= sort_arrow("report_date") %>
       </th>
       <th>操作</th>
@@ -48,7 +52,7 @@
         <td><%= report.id %></td>
         <td><%= report.title %></td>
         <td><%= report.user&.name %></td>
-        <td><%= report.report_date.strftime("%Y-%m-%d") %></td>
+        <td><%= report.created_at.strftime("%H:%M") %></td>
         <td class="d-flex align-items-center">
           <div class="me-2">
             <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
