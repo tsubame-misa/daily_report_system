@@ -131,6 +131,25 @@ button#menu-toggle {
     border-bottom: none !important;
 }
 
+.menu-toggle {
+    display: none !important;
+}
+
+
+
+.custom-dark-button {
+    background-color: #343A40;
+    color: #ffffff;
+    border-color: #343A40;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #495057;
+        color: #ffffff;
+        border-color: #495057;
+    }
+}
+
 .toast-body {
     padding-top: 5px !important;
     border-radius: 0 0 5px 5px !important;
@@ -223,7 +242,6 @@ button#menu-toggle {
     outline: none !important;
     box-shadow: none !important;
 }
-
 
 .black-btn-bg {
     background-color: #343A40;
