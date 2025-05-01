@@ -1,63 +1,45 @@
-<div class="d-flex align-items-center justify-content-between my-3">
-  <%= link_to "← 前月", calendar_month_path(month: @prev_month, year: @prev_month), class: "btn btn-outline-secondary" %>
+<%# カレンダーのヘッダー部分 %>
+<div class="user-calendar-container">
+  <div class="user-calendar-header">
+    <h2 class="text-center"><%= @selected_year %>年 <%= @selected_month %>月</h2>
+    <div class="navigation-buttons">
+      <%= link_to '前月', calendar_month_path(date: @prev_month), class: 'btn btn-outline-primary' %>
+      <%= link_to '次月', calendar_month_path(date: @next_month), class: 'btn btn-outline-primary' %>
+    </div>
+  </div>
 
-  <h2 class="fs-4 fw-bold mb-0">
-    <%= "#{@selected_year}年#{@selected_month}月の日報カレンダー" %>
-  </h2>
-
-  <%= link_to "次月 →", calendar_month_path(month: @next_month, year: @next_month), class: "btn btn-outline-secondary" %>
-</div>
-
-<!-- 📅 カレンダー表示 -->
-<table class="calendar">
-  <thead>
-    <tr>
-      <% %w[日 月 火 水 木 金 土].each do |day| %>
-        <th><%= day %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @dates.each do |week| %>
+  <%# カレンダー本体 %>
+  <table class="user-calendar">
+    <thead>
       <tr>
-        <% week.each do |date| %>
-          <td class="<%= 'outside-month' if date.month != @selected_month %>">
-            <div class="date-label">
-              <% if request.path.start_with?('/admin') %>
-                <%= link_to date.day, admin_calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-dark" %>
-              <% else %>
-                <span class="text-dark"><%= date.day %></span>
-              <% end %>
-            </div>
-            <div class="report-list">
-              <% @calendar_preview_reports[date]&.each do |report| %>
-                <div class="report-item">
-                  <%= link_to request.path.start_with?('/admin') ? admin_report_path(report) : report_path(report), class: "d-flex align-items-center gap-1" do %>
-                    <% if defined?(current_user) && report.favorites.exists?(user_id: current_user.id) %>
-                      <i class="bi bi-heart-fill"></i>
-                    <% else %>
-                      <i class="bi bi-heart"></i>
-                    <% end %>
-                    <% if request.path.start_with?('/admin') %>
-                      <span class="report-content"><%= report.user.name %></span>
-                    <% else %>
-                      <span class="report-content title"><%= report.title %></span>
-                    <% end %>
-                  <% end %>
-                </div>
-              <% end %>
-              <% if request.path.start_with?('/admin') && @reports_count_by_date[date].to_i > 3 %>
-                <div class="more-link">
-                  <%= link_to admin_calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-primary" do %>
-                    <small>もっと見る</small>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-          </td>
-        <% end %>
+        <th class="text-center">日</th>
+        <th class="text-center">月</th>
+        <th class="text-center">火</th>
+        <th class="text-center">水</th>
+        <th class="text-center">木</th>
+        <th class="text-center">金</th>
+        <th class="text-center">土</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    </thead>
+    <tbody>
+      <% @calendar_weeks.each do |week| %>
+        <tr>
+          <% week.each do |date| %>
+            <% if date.nil? %>
+              <td class="text-center empty-cell"></td>
+            <% else %>
+              <% has_report = @report_dates[date].present? %>
+              <td class="text-center <%= 'has-report' if has_report %>">
+                <% if has_report %>
+                  <%= link_to date.day, report_path(@report_dates[date]), class: 'report-date' %>
+                <% else %>
+                  <span class="date"><%= date.day %></span>
+                <% end %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
