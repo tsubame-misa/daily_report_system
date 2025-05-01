@@ -1,4 +1,6 @@
 class Report < ApplicationRecord
+  include ErrorMessageFormatter
+
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
@@ -35,29 +37,4 @@ class Report < ApplicationRecord
   }, presence: true
   validates :title, presence: true
   validates :contents, presence: true
-
-  def formatted_error_messages
-    # 空欄エラーのカラム名を集める
-    missing_fields = errors.select { |error| error.type == :blank }.map do |error|
-      case error.attribute
-      when :title then "タイトル"
-      when :contents then "内容"
-      when :report_date then "日付"
-        # 必要に応じて他のカラムも
-      end
-    end.compact.uniq
-
-    # 空欄以外のエラーメッセージを集める
-    other_errors = errors.filter_map do |error|
-      unless error.type == :blank
-        error.full_message
-      end
-    end
-
-    # メッセージを組み立てる
-    messages = []
-    messages << "#{missing_fields.join('・')}を入力してください" if missing_fields.any?
-    messages.concat(other_errors) if other_errors.any?
-    messages.join('<br>')
-  end
 end
