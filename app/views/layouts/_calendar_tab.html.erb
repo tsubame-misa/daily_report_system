@@ -1,0 +1,15 @@
+<ul class="nav nav-tabs mt-2">
+  <!-- 月別タブ（先頭） -->
+  <li class="nav-item">
+    <%= link_to "月別表示",
+        admin_calendar_month_path(month: @selected_date.beginning_of_month.strftime("%Y-%m")),
+        class: "nav-link #{ action_name == 'month' ? 'active bg-white text-dark' : 'text-dark' }" %>
+  </li>
+
+  <!-- 日別タブ -->
+  <li class="nav-item">
+    <%= link_to "日別表示",
+        admin_calendar_day_path(date: @selected_date.strftime("%Y-%m-%d")),
+        class: "nav-link #{ action_name == 'day' ? 'active bg-white text-dark' : 'text-dark' }" %>
+  </li>
+</ul>
