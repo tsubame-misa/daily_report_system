@@ -123,3 +123,17 @@ button#menu-toggle {
         display: none !important;
     }
 }
+
+
+.custom-dark-button {
+    background-color: #343A40;
+    color: #ffffff;
+    border-color: #343A40;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #495057;
+        color: #ffffff;
+        border-color: #495057;
+    }
+}

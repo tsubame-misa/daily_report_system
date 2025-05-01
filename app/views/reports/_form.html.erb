@@ -23,9 +23,18 @@
   </div>
 
   <div class="d-flex justify-content-end gap-3 mt-5">
-    <%= link_to "キャンセル", reports_path, class: "btn btn-dark btn-lg text-white", style: "background-color: #343A40; border-color: #343A40;" %>
+    <%= render 'shared/bootstrap_dark_button',
+      text: 'キャンセル',
+      path: reports_path,
+      size_class: 'btn-lg',
+      extra_classes: 'custom-dark-button' 
+    %>
 
     <% submit_text = report.persisted? ? '更新' : '登録' %>
-    <%= form.submit submit_text, class: "btn btn-dark btn-lg text-white", style: "background-color: #343A40; border-color: #343A40;" %> 
+    <div class="btn custom-dark-button btn-lg">
+      <%= form.submit submit_text, class: "text-white border-0 bg-transparent p-0" %>
+    </div>
   </div>
+
+
 <% end %>

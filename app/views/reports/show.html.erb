@@ -1,16 +1,14 @@
 <div class="container mt-5">
   <div class="card shadow-sm mb-4">
     <div class="card-body">
-      <p class="text-muted mb-3" style="font-size: 0.9rem;"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
+      <p class="mb-3" style="font-size: 0.9rem;"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
 
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
           <h2 class="card-title mb-0 me-2"><%= @report.title %></h2>
-          <%# 編集アイコン %>
           <%= link_to edit_report_path(@report), class: "btn btn-link text-secondary p-0 me-1  icon-hover", title: "編集", "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
             <i class="bi bi-pencil-square fs-5"></i>
           <% end %>
-          <%# 削除アイコン %>
           <%= button_to report_path(@report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-link text-danger p-0 icon-hover", title: "削除", form: { style: 'display:inline-block;' }, "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
             <i class="bi bi-trash fs-5"></i>
           <% end %>
@@ -29,13 +27,17 @@
       </div>
 
       <div class="text-end text-muted" style="font-size: 0.8rem;">
-        <small>更新日: <%= @report.updated_at.strftime("%Y-%m-%d") %></small>
+        更新日: <%= @report.updated_at.strftime("%Y-%m-%d") %>
       </div>
     </div>
   </div>
-  
-  <div class="">
-    <%= link_to current_user.admin? ? '日報一覧に戻る' : '日報一覧に戻る', reports_path, class: "btn btn-primary btn-lg", style: "background-color: #343A40; color: #ffffff; border-color: #343A40;" %>
+
+  <div class="mt-4">
+    <%= render 'shared/bootstrap_dark_button',
+          text: '日報一覧に戻る',
+          path: reports_path,
+          size_class: 'btn-lg',
+          extra_classes: 'custom-dark-button' %>
   </div>
 
 </div>
