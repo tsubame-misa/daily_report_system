@@ -4,6 +4,7 @@ class CalendarController < ApplicationController
   def month
     set_calendar_dates
     fetch_reports
+    fetch_recent_reports
   end
 
   private
@@ -60,5 +61,12 @@ class CalendarController < ApplicationController
     # 日付ごとの最初の日報IDをハッシュで保持
     @report_dates = reports.group_by { |report| report.report_date.to_date }
                            .transform_values { |reports| reports.first.id }
+  end
+
+  def fetch_recent_reports
+    @recent_reports = Report.where(user_id: current_user.id)
+                            .order(report_date: :desc)
+                            .limit(5)
+                            .includes(:user) # N+1問題を防ぐ
   end
 end
