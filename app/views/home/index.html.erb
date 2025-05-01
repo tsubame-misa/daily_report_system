@@ -24,8 +24,8 @@
     </div>
   <% end %>
 <% else %>
-  <h1>Welcome to Daily Report System</h1>
+  <p>日報管理システムへようこそ</p>
   <p>アカウントをお持ちでない方は、ユーザー登録をお願いします。</p>
-  <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
-  <%= link_to "新規ユーザー登録", new_user_registration_path, class: "btn btn-success" %>
+  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-dark" %>
+  <%= link_to "新規ユーザー登録", new_user_registration_path, class: "btn btn-outline-dark" %>
 <% end %>
