@@ -198,7 +198,6 @@ button#menu-toggle {
 .report-item {
     font-size: 0.85em;
     margin: 3px 0;
-    overflow-wrap: anywhere;
     width: 90%;
     text-align: center;
 
@@ -206,9 +205,11 @@ button#menu-toggle {
         text-decoration: none;
         color: #333;
         display: block;
-        padding: 8px, 0;
         border-radius: 4px;
         transition: all 0.3s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:hover {
             background-color: #f0f0f0;
