@@ -406,3 +406,38 @@ button#menu-toggle {
         }
     }
 }
+
+/* 最近の日報セクションのスタイル */
+.recent-reports-container {
+    .card {
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    .list-group-item {
+        transition: all 0.2s;
+
+        &:hover {
+            background-color: #f8f9fa;
+        }
+
+        h6 {
+            color: #333;
+            font-weight: 500;
+        }
+
+        p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        small {
+            color: #888;
+        }
+    }
+}
