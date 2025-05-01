@@ -9,15 +9,15 @@ class ReportsController < ApplicationController
     sort       = params[:sort]
     direction  = params[:direction]
     @favorite_only = ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
-  
+
     @reports = Report.includes(:user).where(user_id: current_user.id)
-  
+
     if start_date.present? && end_date.present? && start_date > end_date
       @date_range_error = '開始日が終了日より後になっています。正しい日付範囲を指定してください。'
     else
       @reports = @reports.by_date_range(start_date, end_date)
     end
-  
+
     @reports = @reports
                  .sorted_by(sort, direction)
                  .keyword_search(keyword)
@@ -38,6 +38,7 @@ class ReportsController < ApplicationController
     if @report.save
       redirect_to reports_path, notice: '日報が作成されました。'
     else
+      flash.now[:alert] = @report.formatted_error_messages
       render :new, status: :unprocessable_entity
     end
   end
@@ -46,6 +47,7 @@ class ReportsController < ApplicationController
     if @report.update(report_params)
       redirect_to reports_path, notice: '日報を更新しました。'
     else
+      flash.now[:alert] = @report.formatted_error_messages
       render :edit, status: :unprocessable_entity
     end
   end
