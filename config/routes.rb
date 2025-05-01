@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
+  get 'calendar/month', to: 'calendar#month'
+
   resources :users, only: %i[index show edit update destroy]
   resources :reports do
     resources :favorites, only: %i[create destroy]
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboard#index'
-    get 'calendar', to: 'calendar#index'
+    get 'calendar/day', to: 'calendar#day'
     get 'calendar/month', to: 'calendar#month'
     # resources :calendar, only: %i[index]
 

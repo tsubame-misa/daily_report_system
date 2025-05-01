@@ -9,7 +9,7 @@
   <!-- 日別タブ -->
   <li class="nav-item">
     <%= link_to "日別表示",
-        admin_calendar_path(date: @selected_date.strftime("%Y-%m-%d")),
+        admin_calendar_day_path(date: @selected_date.strftime("%Y-%m-%d")),
         class: "nav-link #{ action_name == 'day' ? 'active bg-white text-dark' : 'text-dark' }" %>
   </li>
 </ul>

@@ -1,32 +1,5 @@
-class Admin::CalendarController < ApplicationController
+class CalendarController < ApplicationController
   before_action :authenticate_user!
-  def day
-    start_date = params[:start_date]
-    end_date   = params[:end_date]
-    keyword    = params[:q]
-    sort       = params[:sort]
-    direction  = params[:direction]
-    @favorite_only = ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
-    selected_date = params[:date].present? ? Date.parse(params[:date]) : Date.today
-    @selected_date = selected_date
-
-    @reports = Report.includes(:user)
-    @reports = @reports.where(report_date: selected_date)
-
-    if start_date.present? && end_date.present? && start_date > end_date
-      @date_range_error = '開始日が終了日より後になっています。正しい日付範囲を指定してください。'
-    else
-      @reports = @reports.by_date_range(start_date, end_date)
-    end
-
-    @reports = @reports
-               .sorted_by(sort, direction)
-               .keyword_search(keyword)
-    return unless @favorite_only
-
-    favorite_report_ids = current_user.favorites.pluck(:report_id)
-    @reports = @reports.where(id: favorite_report_ids)
-  end
 
   def month
     # monthというqueryパラメータがあれば、その月を表示
@@ -45,8 +18,9 @@ class Admin::CalendarController < ApplicationController
 
     @dates = (start_date..end_date).to_a.in_groups_of(7)
 
-    # 期間内の全レポートを取得
+    # 期間内の全レポートを取得（current_userのみ）
     all_reports = Report.includes(:user, :favorites)
+                        .where(user_id: current_user.id)
                         .where(report_date: start_date.beginning_of_day..end_date.end_of_day)
 
     # 日付ごとのレポート数を保持
