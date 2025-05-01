@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="card shadow-sm mb-4">
     <div class="card-body">
-      <p class="mb-3" style="font-size: 0.9rem;"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
+      <p class="mb-3"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
 
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
@@ -26,7 +26,7 @@
         <%= simple_format(@report.contents) %>
       </div>
 
-      <div class="text-end text-muted" style="font-size: 0.8rem;">
+      <div class="text-end" style="font-size: 0.8rem;">
         更新日: <%= @report.updated_at.strftime("%Y-%m-%d") %>
       </div>
     </div>
@@ -34,7 +34,7 @@
 
   <div class="mt-4">
     <%= render 'shared/bootstrap_dark_button',
-          text: '日報一覧に戻る',
+          text: '一覧へ戻る',
           path: reports_path,
           size_class: 'btn-lg',
           extra_classes: 'custom-dark-button' %>
