@@ -1,7 +1,16 @@
 <div class="mb-3">
   <%= render 'layouts/calendar_tab' %>
 </div>
-<h2><%= "#{@selected_year}年#{@selected_month}月の日報カレンダー" %></h2>
+
+<div class="d-flex align-items-center justify-content-between my-3">
+  <%= link_to "← 前月", admin_calendar_month_path(month: @prev_month), class: "btn btn-outline-secondary" %>
+
+  <h2 class="fs-4 fw-bold mb-0">
+    <%= "#{@selected_year}年#{@selected_month}月の日報カレンダー" %>
+  </h2>
+
+  <%= link_to "次月 →", admin_calendar_month_path(month: @next_month), class: "btn btn-outline-secondary" %>
+</div>
 
 <!-- 📅 カレンダー表示 -->
 <table class="calendar">

@@ -33,6 +33,10 @@ class Admin::CalendarController < ApplicationController
     @selected_month = @selected_date.month
     @selected_year = @selected_date.year
 
+    # 先月・翌月の値を設定
+    @prev_month = (@selected_date - 1.month).strftime('%Y-%m')
+    @next_month = (@selected_date + 1.month).strftime('%Y-%m')
+
     first_day = Date.new(@selected_year, @selected_month, 1)
     last_day = first_day.end_of_month
     start_date = first_day.beginning_of_week(:sunday)
