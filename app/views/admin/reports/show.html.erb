@@ -1,40 +1,40 @@
 <div class="container mt-5">
-  <div class="card shadow-lg rounded-3">
-    <div class="card-header bg-primary bg-gradient text-white text-uppercase">
-      <h3 class="mb-0 text-center">日報詳細</h3>
-    </div>
+  <div class="card shadow-sm mb-4">
     <div class="card-body">
-      <h4 class="card-title text-primary"><strong>タイトル:</strong> <%= @report.title %></h4>
+      <p class="mb-3"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
 
-      <div class="mb-4 border-start border-3 border-primary ps-3">
-        <strong>日付:</strong>
-        <p class="lead"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex align-items-center">
+          <h2 class="card-title mb-0 me-2"><%= @report.title %></h2>
+          <%= link_to edit_admin_report_path(@report), class: "btn btn-link text-secondary p-0 me-1 icon-hover", title: "編集", "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
+            <i class="bi bi-pencil-square fs-3 ms-3"></i>
+          <% end %>
+          <%= button_to admin_report_path(@report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-link text-danger p-0 icon-hover", title: "削除", form: { style: 'display:inline-block;' }, "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
+            <i class="bi bi-trash fs-3 me-3"></i>
+          <% end %>
+        </div>
+        <div class="ms-auto">
+          <%= render partial: "reports/favorite", locals: { report: @report, favorite: @report.favorites.find_by(user_id: current_user.id) } %>
+        </div>
       </div>
 
-      <div class="mb-4 border-start border-3 border-primary ps-3">
-        <strong>内容:</strong>
-        <p class="lead"><%= simple_format(@report.contents) %></p>
+      <div class="border-top border-3 border-muted my-4"></div>
+
+      <div class="bg-light p-3 rounded mb-3">
+        <%= simple_format(@report.contents) %>
       </div>
 
-      <ul class="list-unstyled">
-        <li><strong>作成者:</strong> <%= @report.user&.name %></li>
-        <li><strong>作成日時:</strong> <%= @report.created_at.strftime("%Y-%m-%d %H:%M") %></li>
-        <li><strong>更新日時:</strong> <%= @report.updated_at.strftime("%Y-%m-%d %H:%M") %></li>
-      </ul>
+      <div class="text-end" style="font-size: 0.8rem;">
+        更新日: <%= @report.updated_at.strftime("%Y-%m-%d") %>
+      </div>
     </div>
-    <div class="card-footer d-flex align-items-center justify-content-center">
-      <div class="me-3">
-        <%= render partial: "reports/favorite", locals: { report: @report, favorite: @report.favorites.find_by(user_id: current_user.id) } %>
-      </div>
-      <div class="me-2">
-        <% if current_user.admin? %>
-          <%= link_to "日報一覧(全ユーザー)へ戻る", admin_reports_path, class: "btn btn-outline-danger btn-lg" %>
-        <% else %>
-          <%= link_to "日報一覧(個人)へ戻る", reports_path, class: "btn btn-outline-secondary btn-lg" %>
-        <% end %>
-      </div>
-      <%= link_to "編集", edit_admin_report_path(@report), class: "btn btn-outline-primary btn-lg me-2" %>
-      <%= button_to "削除", admin_report_path(@report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-lg", form: { style: 'display:inline-block;' } %>
-     </div>
+  </div>
+
+  <div class="mt-4">
+    <%= render 'share/bootstrap_dark_button',
+          text: '一覧へ戻る',
+          path: admin_reports_path,
+          size_class: 'btn-lg',
+          extra_classes: 'custom-dark-button' %>
   </div>
 </div>
