@@ -24,6 +24,12 @@
   <body>
     <%= render "share/toast_message" %>
     <%= render "layouts/header" %>
+
+
+    <% if user_signed_in? && current_user.admin? %>
+      <%= render 'share/admin/sub_nav' %>
+    <% end %> 
+
     <div class="container mt-4">
       <%= yield %>
     </div>

@@ -1,0 +1,7 @@
+<div class="container d-flex my-3">
+  <%= link_to "日報一覧", admin_reports_path, 
+              class: "btn btn-lg me-2 #{current_page?(admin_reports_path) ? 'black-btn-bg text-white' : 'btn-outline-dark'}" %>
+
+  <%= link_to "ユーザー管理", admin_users_path, 
+              class: "btn btn-lg #{current_page?(admin_users_path) ? 'black-btn-bg text-white' : 'btn-outline-dark'}" %>
+</div>
