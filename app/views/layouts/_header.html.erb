@@ -1,0 +1,25 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container-fluid d-flex justify-content-between">
+        <%= link_to "日報管理システム", root_path, class: "navbar-brand text-dark fw-bold" %>
+        <ul class="navbar-nav ms-auto">
+            <% if user_signed_in? %>
+              <div class="d-flex align-items-center">
+                <li class="nav-item">
+                  <span class="nav-link text-dark py-1 pe-2 right-line"><%= current_user.name %> さん</span>
+                </li>
+                <li class="nav-item">
+                  <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_confirm: "本当にログアウトしますか？" },
+                  class: "btn logout-button px-2 py-2" %>
+                </li>
+              </div>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "btn login-button px-2 py-2" %>
+              </li>
+            <% end %>
+        </ul>
+      </div>
+    </nav>
+</header>
+

@@ -107,22 +107,155 @@ button#menu-toggle {
     margin-top: 15px;
 }
 
-/* 768px 以上では通常のヘッダーメニューを表示 */
-@media (min-width: 768px) {
+.border-right {
+    border-right: 1px solid black;
+}
 
-    .sidebar-menu,
-    .menu-overlay {
-        display: none !important;
-    }
+#toast-container {
+    position: fixed;
+    right: 10px;
+    top: 68px;
+    z-index: 1055;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    pointer-events: none;
+}
 
-    .desktop-menu {
-        display: flex !important;
-    }
+#toast-container .toast {
+    pointer-events: auto;
+}
 
-    .menu-toggle {
-        display: none !important;
+.toast-header {
+    border-bottom: none !important;
+}
+
+.menu-toggle {
+    display: none !important;
+}
+
+
+
+.custom-dark-button {
+    background-color: #343A40;
+    color: #ffffff;
+    border-color: #343A40;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #495057;
+        color: #ffffff;
+        border-color: #495057;
     }
 }
+
+.toast-body {
+    padding-top: 5px !important;
+    border-radius: 0 0 5px 5px !important;
+}
+
+// toast success
+.toast-success {
+    border: 1px solid #198754 !important;
+    background: #fff !important;
+}
+
+.toast-title-success {
+    color: #198754 !important;
+}
+
+.toast-header-success {
+    background: #e9fbe8 !important;
+    color: #198754 !important;
+}
+
+.toast-body-success {
+    background: #e9fbe8 !important;
+    border-radius: 1px;
+}
+
+// toast danger
+.toast-danger {
+    border: 1px solid #dc3545 !important;
+    background: #fff !important;
+}
+
+.toast-title-danger {
+    color: #dc3545 !important;
+}
+
+.toast-header-danger {
+    background: #fdeaea !important;
+    color: #dc3545 !important;
+}
+
+.toast-body-danger {
+    background: #fdeaea !important;
+}
+
+// フィールドエラー時
+.field_with_errors input,
+.field_with_errors textarea,
+.field_with_errors select {
+    border: 1px solid #dc3545 !important;
+    background: #fff0f0;
+    border-radius: 2px;
+}
+
+.right-line {
+    border-right: 1px solid #000;
+}
+
+.logout-button {
+    background-color: transparent;
+    color: #000 !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.logout-button:hover {
+    color: #dc3545 !important;
+    font-weight: bold !important;
+}
+
+.logout-button:focus,
+.logout-button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.login-button {
+    background-color: transparent;
+    color: #495057 !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.login-button:hover {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+.login-button:focus,
+.login-button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.black-btn-bg {
+    background-color: #343A40;
+    color: #ffffff;
+    border-color: #343A40;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #495057;
+        color: #ffffff;
+        border-color: #495057;
+    }
+}
+
 
 .calendar {
     width: 100%;

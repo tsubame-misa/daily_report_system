@@ -37,3 +37,5 @@
 
 /vendor
 /.env
+
+/.cursor

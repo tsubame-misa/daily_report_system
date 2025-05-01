@@ -1,20 +1,7 @@
-<h2>日報編集ページ</h2>
-
-<% if @report.errors.any? %>
-  <div class="alert alert-danger">
-    <h4>以下のエラーがあります:</h4>
-    <ul>
-      <% @report.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<div class="container mt-5">
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <%= render 'form', report: @report, form_class: 'edit-form', submit_name: '更新' %>
+    </div>
   </div>
-<% end %>
-
-
-<%= render 'form', report: @report, form_class: 'edit-form', submit_name: '更新' %>
-
-<div>
-  <%= button_to "削除", report_path(@report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
-  <%= link_to current_user.admin? ? '日報一覧(個人)に戻る' : '日報一覧に戻る', reports_path %>
 </div>

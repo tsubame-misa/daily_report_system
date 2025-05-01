@@ -1,11 +1,11 @@
 <turbo-frame id="favorite-button-<%= report.id %>">
   <% if favorite&.id %>
     <%= button_to report_favorite_path(report, favorite), method: :delete, class: "btn btn-link p-0" do %>
-      <i class="bi bi-heart-fill text-danger"></i>
+      <i class="bi bi-heart-fill text-danger fs-3"></i>
     <% end %>
   <% else %>
     <%= button_to report_favorites_path(report), method: :post, class: "btn btn-link p-0" do %>
-      <i class="bi bi-heart-fill text-secondary"></i>
+      <i class="bi bi-heart-fill text-secondary fs-3"></i>
     <% end %>
   <% end %>
 </turbo-frame>

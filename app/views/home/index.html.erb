@@ -17,40 +17,15 @@
   <% end %>
   <h2 class="mb-4">新着日報</h2>
   <% if @reports.any? %>
-    <table class="table table-hover">
-      <thead class="table-dark">
-        <tr>
-          <th>タイトル</th>
-          <th>作成者</th>
-          <th>日付</th>
-          <th>詳細</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @reports.each do |report| %>
-          <tr>
-            <td><%= report.title %></td>
-            <td><%= report.user.name %></td>
-            <td><%= report.report_date.strftime("%Y-%m-%d")  %></td>
-            <td>
-              <% if current_user.admin? %>
-                <%= link_to "詳細を見る", admin_report_path(report), class: "btn btn-outline-danger btn-sm" %>
-              <% else %>
-                <%= link_to "詳細を見る", report_path(report), class: "btn btn-outline-primary btn-sm" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render partial: "share/reports_table", locals: { reports: @reports, admin: current_user.admin?, sort_enabled:false } %>
   <% else %>
     <div class="alert alert-warning">
       現在、新着の日報はありません。
     </div>
   <% end %>
 <% else %>
-  <h1>Welcome to Daily Report System</h1>
+  <p>日報管理システムへようこそ</p>
   <p>アカウントをお持ちでない方は、ユーザー登録をお願いします。</p>
-  <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
-  <%= link_to "新規ユーザー登録", new_user_registration_path, class: "btn btn-success" %>
+  <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-dark" %>
+  <%= link_to "新規ユーザー登録", new_user_registration_path, class: "btn btn-outline-dark" %>
 <% end %>

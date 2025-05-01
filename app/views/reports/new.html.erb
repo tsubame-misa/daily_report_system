@@ -1,24 +1,7 @@
-
-<h1>日報管理システム</h1>
-<h2>日報新規作成ページ</h2>
-
-
-<% if @report.errors.any? %>
-  <div class="alert alert-danger">
-    <h4>以下のエラーがあります:</h4>
-    <ul>
-      <% @report.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<div class="container mt-5">
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <%= render 'form', report: @report, form_class: 'new-form' %>
+    </div>
   </div>
-<% end %>
-
-
-<%= render 'form', report: @report, form_class: '渡したいclass名' %>
-
-
-
-<div>
-  <%= link_to '日報一覧(個人)に戻る', reports_path %>
 </div>
