@@ -223,9 +223,31 @@ button#menu-toggle {
         display: block;
         border-radius: 4px;
         transition: all 0.3s ease;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        width: 100%;
+
+        .report-content {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            text-align: left;
+
+            &.title {
+                white-space: normal;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 1.2;
+                max-height: 3.6em;
+                word-break: break-all;
+                word-wrap: break-word;
+                min-width: 0;
+                padding: 0 5px;
+            }
+        }
 
         &:hover {
             background-color: #f0f0f0;

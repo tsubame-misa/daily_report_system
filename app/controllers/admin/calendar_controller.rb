@@ -1,4 +1,5 @@
 class Admin::CalendarController < ApplicationController
+  before_action :authenticate_user!
   def day
     start_date = params[:start_date]
     end_date   = params[:end_date]

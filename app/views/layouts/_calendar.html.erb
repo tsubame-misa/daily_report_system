@@ -13,18 +13,26 @@
         <% week.each do |date| %>
           <td class="<%= 'outside-month' if date.month != @selected_month %>">
             <div class="date-label">
-              <%= link_to date.day, defined?(admin_calendar_day_path) ? admin_calendar_day_path(date: date.strftime('%Y-%m-%d')) : calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-dark" %>
+              <% if request.path.start_with?('/admin') %>
+                <%= link_to date.day, admin_calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-dark" %>
+              <% else %>
+                <span class="text-dark"><%= date.day %></span>
+              <% end %>
             </div>
             <div class="report-list">
               <% @reports_by_date[date]&.each do |report| %>
                 <div class="report-item">
-                  <%= link_to defined?(admin_report_path) ? admin_report_path(report) : report_path(report), class: "d-flex align-items-center gap-1" do %>
+                  <%= link_to request.path.start_with?('/admin') ? admin_report_path(report) : report_path(report), class: "d-flex align-items-center gap-1" do %>
                     <% if defined?(current_user) && report.favorites.exists?(user_id: current_user.id) %>
                       <i class="bi bi-heart-fill"></i>
                     <% else %>
                       <i class="bi bi-heart"></i>
                     <% end %>
-                    <span><%= report.user.name %></span>
+                    <% if request.path.start_with?('/admin') %>
+                      <span class="report-content"><%= report.user.name %></span>
+                    <% else %>
+                      <span class="report-content title"><%= report.title %></span>
+                    <% end %>
                   <% end %>
                 </div>
               <% end %>
