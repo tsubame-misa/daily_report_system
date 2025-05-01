@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name role])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[name role])
   end
+
+  def after_sign_in_path_for(resource)
+    if resource.admin?
+      admin_calendar_day_path
+    else
+      calendar_month_path
+    end
+  end
 end
