@@ -1,0 +1,28 @@
+
+<%# --- ローカル変数の設定 (デフォルト値あり) --- %>
+<% text ||= "ボタンテキスト" %>  <%# ボタンに表示する文字 %>
+<% path ||= "#" %>            <%# リンク先 or フォーム送信先 %>
+<% http_method ||= nil %>    <%# :post, :patch, :delete など (指定すると button_to になる) %>
+<% turbo_confirm ||= nil %>  <%# 確認メッセージ (例: "実行しますか？") %>
+<% size_class ||= '' %>      <%# Bootstrapのサイズクラス 'btn-lg' または 'btn-sm' %>
+<% extra_classes ||= '' %>   <%# 他に追加したいBootstrapクラスやカスタムクラス %>
+<% html_options ||= {} %>    <%# link_to/button_to に追加するHTML属性 (id, targetなど) %>
+<%# -------------------------------------------- %>
+
+
+<% classes = "btn btn-black-custom #{size_class} #{extra_classes}".strip %>
+
+<% if http_method %>
+  <%= button_to text, path,
+        method: http_method,
+        data: (turbo_confirm ? { turbo_confirm: turbo_confirm } : {}),
+        class: classes,
+        **html_options
+         %>
+<% else %>
+  <%= link_to text, path,
+        class: classes,
+        data: (turbo_confirm ? { turbo_confirm: turbo_confirm } : {}),
+        **html_options
+         %>
+<% end %>
