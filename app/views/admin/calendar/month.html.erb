@@ -25,7 +25,7 @@
     <% @dates.each do |week| %>
       <tr>
         <% week.each do |date| %>
-          <td class="<%= 'outside-month' if date.month != @selected_month %>">
+          <td class="<%= 'outside-month' if date.month != @selected_month %><%= ' today' if date == Date.today %>">
             <div class="date-label">
               <% if request.path.start_with?('/admin') %>
                 <%= link_to date.day, admin_calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-dark" %>
@@ -64,4 +64,3 @@
     <% end %>
   </tbody>
 </table>
-

@@ -3,3 +3,4 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
 import "./menu";
+import "./card_link";
