@@ -1,7 +1,11 @@
 <div class="container mt-5">
   <div class="card shadow-sm mb-4">
     <div class="card-body">
-      <p class="mb-3"><%= @report.report_date.strftime("%Y-%m-%d") %></p>
+      <p class="mb-3">
+        <span><%= @report.report_date.strftime("%Y-%m-%d") %></span>
+        <span class="mx-1">/</span>
+        <span>作成者 <%= @report.user&.name %></span>
+      </p>
 
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex align-items-center">
