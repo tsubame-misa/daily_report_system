@@ -57,8 +57,8 @@
           <div class="me-2">
             <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
           </div>
-          <%= link_to "詳細", report_path(report), class: "btn btn-primary btn-sm m-0 me-2" %>
-          <%= button_to "削除", report_path(report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+      <%= link_to "詳細", admin_report_path(report), class: "btn btn-primary btn-sm m-0 me-2" %>
+          <%= button_to "削除", admin_report_path(report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
         </td>
       </tr>
     <% end %>

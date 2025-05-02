@@ -44,8 +44,9 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def destroy
+    report_date = @report.report_date
     @report.destroy
-    redirect_to admin_calendar_month_path, notice: '日報が削除されました。'
+    redirect_to admin_calendar_day_path(date: report_date), notice: '日報が削除されました。'
   end
 
   private
