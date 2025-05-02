@@ -3,7 +3,7 @@
 <% context ||= :user %> 
 
 <% form_url = (context == :admin) ? [:admin, report] : report %>
-<% cancel_path = (context == :admin) ? admin_reports_path : reports_path %>
+<% cancel_path = (context == :admin) ? admin_calendar_month_path : calendar_month_path %>
 
 <%= form_with model: report, url: form_url, local: true, html: { class: form_class } do |form| %>
   <div class="mb-4">
