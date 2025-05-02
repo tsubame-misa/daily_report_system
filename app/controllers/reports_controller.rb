@@ -36,7 +36,7 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.build(report_params)
     if @report.save
-      redirect_to reports_path, notice: '日報が作成されました。'
+      redirect_to calendar_month_path, notice: '日報が作成されました。'
     else
       flash.now[:alert] = @report.formatted_error_messages
       render :new, status: :unprocessable_entity
@@ -45,7 +45,7 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      redirect_to reports_path, notice: '日報を更新しました。'
+      redirect_to calendar_month_path, notice: '日報を更新しました。'
     else
       flash.now[:alert] = @report.formatted_error_messages
       render :edit, status: :unprocessable_entity

@@ -3,11 +3,10 @@
 <% context ||= :user %> 
 
 <% form_url = (context == :admin) ? [:admin, report] : report %>
-
 <% cancel_path = if report.persisted? %>
   <% (context == :admin) ? admin_report_path(report) : report_path(report) %>
 <% else %>
-  <% (context == :admin) ? admin_reports_path : reports_path %>
+  <% (context == :admin) ? admin_calendar_month_path : calendar_month_path %>
 <% end %>
 
 <%= form_with model: report, url: form_url, local: true, html: { class: form_class } do |form| %>

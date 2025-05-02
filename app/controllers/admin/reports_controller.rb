@@ -35,7 +35,7 @@ class Admin::ReportsController < Admin::BaseController
   def update
     @report.update(report_params)
     if @report.save
-      redirect_to admin_reports_path, notice: "日報を更新しました。"
+      redirect_to admin_calendar_month_path, notice: "日報を更新しました。"
     else
       @admin_context = true
       flash.now[:alert] = @report.formatted_error_messages
@@ -44,8 +44,9 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def destroy
+    report_date = @report.report_date
     @report.destroy
-    redirect_to admin_reports_path, notice: '日報が削除されました。'
+    redirect_to admin_calendar_day_path(date: report_date), notice: '日報が削除されました。'
   end
 
   private
