@@ -13,7 +13,7 @@
       新規作成
     <% end %>
   </div>
-  <%= render_search_bar(path: reports_path) %>
+  <%= render_search_bar(path: admin_calendar_day_path) %>
 
   <div class="d-flex align-items-center justify-content-between my-3">
   <% prev_date = (@selected_date - 1.day).strftime("%Y-%m-%d") %>
