@@ -1,4 +1,4 @@
-class Admin::CalendarController < ApplicationController
+class Admin::CalendarController < Admin::BaseController
   before_action :authenticate_user!
   def day
     start_date = params[:start_date]
