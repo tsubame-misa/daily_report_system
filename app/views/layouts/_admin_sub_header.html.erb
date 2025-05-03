@@ -1,0 +1,18 @@
+<div class="container">
+  <ul class="nav nav-tabs mt-3">
+    <!-- 日報一覧 タブ（先頭） -->
+    <li class="nav-item">
+      <%= link_to "日報一覧",
+          admin_calendar_month_path(month: Date.today.beginning_of_month.strftime("%Y-%m")),
+          class: "nav-link #{ !request.path.start_with?('/admin/users') ? 'active bg-white text-dark' : 'text-dark' }" %>
+    </li>
+
+    <!-- 従業員一覧 タブ -->
+    <li class="nav-item">
+      <%= link_to "従業員一覧",
+          admin_users_path(tab: "users"),
+          class: "nav-link #{ request.path.start_with?('/admin/users') ? 'active bg-white text-dark' : 'text-dark' }" %>
+    </li>
+  </ul>
+</div>
+
