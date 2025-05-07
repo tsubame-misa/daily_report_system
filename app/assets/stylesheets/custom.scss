@@ -1,7 +1,19 @@
-/* カスタム背景や余白、フォントサイズの調整など */
+/* フォントファミリーの設定 */
+:root {
+    --font-family-base: 'Noto Sans', 'Noto Sans JP', sans-serif;
+}
+
+/* サイト全体にフォントを適用 */
 body {
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     background-color: #f8f9fa;
-    /* 薄いグレー背景 */
+}
+
+/* 見出しにも同じフォントを適用 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-base);
 }
 
 h1 {
