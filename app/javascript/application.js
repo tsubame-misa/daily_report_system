@@ -82,3 +82,19 @@ document.addEventListener('submit', () => {
     clearTimeout(window.validationErrorTimer);
   }
 });
+
+// カレンダーセルクリックで日付リンクに遷移
+document.addEventListener('click', function(e) {
+  // calendar-cellのtdかどうか判定
+  const td = e.target.closest('td.calendar-cell');
+  if (!td) return;
+
+  // aタグやbuttonがクリックされた場合は何もしない
+  if (e.target.closest('a') || e.target.closest('button')) return;
+
+  // 優先: a.report-date, 次: a.new-report-date
+  const link = td.querySelector('a.report-date, a.new-report-date');
+  if (link && link.href) {
+    window.location.href = link.href;
+  }
+});

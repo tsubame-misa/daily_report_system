@@ -23,8 +23,16 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_confirm: "本当にログアウトしますか？" },
-              class: "btn logout-button px-2 py-2" %>
+              <div data-controller="modal">
+                <button
+                  type="button"
+                  class="btn logout-button px-2 py-2"
+                  data-action="click->modal#show"
+                  data-url="<%= destroy_user_session_path %>">
+                  ログアウト
+                </button>
+                <%= render partial: "share/delete_alert", locals:{question_text:"本当にログアウトしますか？", confirm_button_text:"ログアウトする"}%>
+              </div>
             </li>
           </div>
         <% else %>

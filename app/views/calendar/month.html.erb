@@ -36,12 +36,15 @@
               <td class="text-center empty-cell"></td>
             <% else %>
               <% has_report = @report_dates[date].present? %>
-              <td class="text-center <%= 'has-report' if has_report %>">
+              <% is_today = (date == Date.today) %>
+              <td class="text-center <%= 'has-report' if has_report %> <%= 'today-cell' if is_today %> calendar-cell">
                 <% if has_report %>
+                  <button type="button" class="calendar-edit-btn" tabindex="-1">✎</button>
                   <%= link_to date.day, report_path(@report_dates[date]), class: 'report-date' %>
                 <% else %>
-                  <%= link_to date.day, new_report_path(date: date.strftime('%Y-%m-%d')), class: 'new-report-date' %>
-                <% end %>
+                <%= link_to '＋', new_report_path(date: date.strftime('%Y-%m-%d')), class: 'calendar-plus-btn' %>
+                <%= link_to date.day, new_report_path(date: date.strftime('%Y-%m-%d')), class: 'new-report-date' %>
+              <% end %>
               </td>
             <% end %>
           <% end %>
