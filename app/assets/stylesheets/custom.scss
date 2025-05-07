@@ -617,6 +617,64 @@ button#menu-toggle {
             height: 100%;
         }
     }
+
+    td.today-cell {
+        position: relative;
+    }
+
+    td.today-cell a.report-date,
+    td.today-cell a.new-report-date {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: #1976d2;
+        color: #fff !important;
+        font-weight: normal;
+        font-size: 1em;
+        box-shadow: 0 2px 6px rgba(25, 118, 210, 0.08);
+        transition: none;
+    }
+
+    td.today-cell a.report-date:hover,
+    td.today-cell a.new-report-date:hover {
+        background: #1976d2;
+        color: #fff !important;
+        text-decoration: none;
+    }
+}
+
+/* カレンダーセルのプラスボタン・編集ボタンのスタイル */
+.calendar-cell {
+    position: relative;
+}
+
+.calendar-plus-btn, .calendar-edit-btn {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    display: none;
+    background: #fff;
+    border: none;
+    color: #007bff;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 50%;
+    z-index: 2;
+    text-decoration: none;
+}
+
+.calendar-cell:hover .calendar-plus-btn,
+.calendar-cell:hover .calendar-edit-btn {
+    display: inline-block;
+}
+
+.calendar-plus-btn:focus, .calendar-edit-btn:focus {
+    outline: none;
 }
 
 /* 最近の日報セクションのスタイル */
