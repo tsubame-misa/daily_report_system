@@ -472,6 +472,7 @@ button#menu-toggle {
         align-items: center;
         height: 100%;
         gap: 15px;
+        width: 40%;
     }
 
     .today-button {
@@ -480,7 +481,6 @@ button#menu-toggle {
         justify-content: center;
         padding: 5px 20px;
         border-radius: 9999px;
-        border: 1px solid #000;
         color: #000;
         text-decoration: none;
         font-size: 0.8rem;
@@ -515,6 +515,7 @@ button#menu-toggle {
 
     .search_bar_container {
         height: 100%;
+        flex-grow: 1;
     }
 
     .btn-group .btn,
@@ -525,6 +526,19 @@ button#menu-toggle {
         box-shadow: none !important;
         outline: none !important;
     }
+}
+
+.today-button-admin {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background-color: #1976d2;
+    color: #fff !important;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 auto;
 }
 
 .user-calendar {
@@ -717,7 +731,6 @@ button#menu-toggle {
 .search_bar_input {
     border-radius: 23px;
     background-color: #ececec;
-    border: 1px solid #000;
     padding: 8px 12px 8px 17px;
     outline: none;
     transition: background-color 0.3s ease;
