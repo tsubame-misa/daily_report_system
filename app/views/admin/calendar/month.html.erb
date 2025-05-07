@@ -52,8 +52,9 @@
               <% end %>
               <% if request.path.start_with?('/admin') && @reports_count_by_date[date].to_i > 3 %>
                 <div class="more-link">
+                  <% remaining_count = @reports_count_by_date[date].to_i - 3 %>
                   <%= link_to admin_calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-primary" do %>
-                    <small>もっと見る</small>
+                   <small>他<%= remaining_count %>件</small>
                   <% end %>
                 </div>
               <% end %>
