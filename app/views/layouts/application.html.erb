@@ -23,7 +23,13 @@
     <% if user_signed_in? %>
       <% if current_user.admin? %>
         <div class="mb-3">
-          <%= render 'layouts/admin/sub_header' %>
+          <% if request.path.start_with?("/admin") %>
+            <%# 管理者モード %>
+            <%= render 'layouts/admin/sub_header' %>
+          <% else %>
+            <%# 個人ページモード %>
+            <%= render 'layouts/sub_header' %>
+          <% end %>
         </div>
       <% else %>
         <div class="mb-3">
