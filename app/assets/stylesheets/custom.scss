@@ -485,6 +485,7 @@ button#menu-toggle {
         text-decoration: none;
         font-size: 0.8rem;
         height: 40px;
+        transition: background-color 0.3s ease;
 
         &:hover {
             background-color: #dadada;
@@ -539,6 +540,7 @@ button#menu-toggle {
     text-align: center;
     font-weight: bold;
     margin: 0 auto;
+    transition: background-color 0.3s ease;
 }
 
 .user-calendar {
