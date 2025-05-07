@@ -7,14 +7,12 @@
       <% if admin %>
         <th class="align-middle">作成者</th>
       <% end %>
-      <% if !admin %>
-        <th class="align-middle">
-          日付
-          <%if sort_enabled %>
-            <%= sort_arrow("report_date") %>
-          <% end %>
-        </th>
-      <% end %>
+      <th class="align-middle">
+        <%= admin ? "作成時刻" : "日付" %>
+        <%if sort_enabled %>
+          <%= sort_arrow(admin ? "created_at" : "report_date") %>
+        <% end %>
+      </th>
       <th class="align-middle">操作</th>
     </tr>
   </thead>
@@ -25,9 +23,8 @@
         <% if admin %>
           <td><%= report.user&.name %></td>
         <% end %>
-        <% if !admin %>
-          <td><%= report.report_date.strftime("%Y-%m-%d") %></td>
-        <% end %>
+        <td><%= admin ? report.created_at.strftime("%H:%M") : report.report_date.strftime("%Y-%m-%d") %></td>
+
         <td class="d-flex align-items-center">
           <div class="me-2">
             <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>

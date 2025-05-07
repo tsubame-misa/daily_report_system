@@ -8,12 +8,12 @@ class Admin::CalendarController < Admin::BaseController
     # start_date = params[:start_date]
     # end_date   = params[:end_date]
     # keyword    = params[:q]
-    # sort       = params[:sort]
-    # direction  = params[:direction]
+    sort       = params[:sort]
+    direction  = params[:direction]
     # @favorite_only = ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
 
     @reports = Report.includes(:user)
-    @reports = @reports.where(report_date: @selected_date).keyword_search(params[:q])
+    @reports = @reports.where(report_date: @selected_date).keyword_search(params[:q]).sorted_by(sort, direction)
 
     return unless ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
 
