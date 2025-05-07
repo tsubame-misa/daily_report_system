@@ -1,6 +1,8 @@
 class ReportsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_report, only: %i[show edit update destroy]
+  before_action :set_origin, only: %i[show edit]
+  before_action :set_origins, only: %i[show edit]
 
   def index
     start_date = params[:start_date]
@@ -62,6 +64,26 @@ class ReportsController < ApplicationController
   def set_report
     @report = current_user.reports.find_by(id: params[:id])
     not_found unless @report
+  end
+
+  def set_origin
+    @origin = params[:origin] || request.referer || calendar_month_path
+  end
+
+  # セッションでoriginを管理
+  def set_origins
+    if action_name == 'show'
+      # edit画面から戻ってきた場合はorigin_level1を上書きしない
+      if request.referer&.include?(calendar_month_path) ||
+         (request.referer&.include?(reports_path) && !request.referer&.include?('/edit'))
+        session[:origin_level1] = request.referer
+      end
+      session.delete(:origin_level2)
+    elsif action_name == 'edit'
+      session[:origin_level2] = session[:origin_level1]
+    end
+    @origin_level1 = session[:origin_level1]
+    @origin_level2 = session[:origin_level2]
   end
 
   def report_params

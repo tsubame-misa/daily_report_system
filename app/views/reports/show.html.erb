@@ -45,8 +45,8 @@
 
   <div class="mt-4">
     <%= render 'share/bootstrap_dark_button',
-          text: 'カレンダーへ戻る',
-          path: calendar_month_path,
+          text: @origin_level1.present? ? '戻る' : 'カレンダーへ戻る',
+          path: @origin_level1 || calendar_month_path,
           size_class: 'btn-lg',
           extra_classes: 'btn btn-lg btn-outline-dark btn-hover-red' %>
   </div>

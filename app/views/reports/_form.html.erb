@@ -8,6 +8,7 @@
 <% else %>
   <% (context == :admin) ? admin_calendar_month_path : calendar_month_path %>
 <% end %>
+<% origin_path = params[:origin].presence || cancel_path %>
 
 <%= form_with model: report, url: form_url, local: true, html: { class: form_class } do |form| %>
   <div class="mb-4">
@@ -34,7 +35,7 @@
   <div class="d-flex justify-content-end gap-3 mt-5">
     <%= render 'share/bootstrap_dark_button',
       text: 'キャンセル',
-      path: cancel_path, 
+      path: origin_path, 
       size_class: 'btn-lg',
       extra_classes: 'btn btn-lg btn-outline-dark btn-hover-red'
     %>
