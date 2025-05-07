@@ -3,17 +3,17 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>タイトル</th>
+      <th class="align-middle">タイトル</th>
       <% if admin %>
-        <th>作成者</th>
+        <th class="align-middle">作成者</th>
       <% end %>
-      <th>
-        日付
+      <th class="align-middle">
+        <%= admin ? "作成時刻" : "日付" %>
         <%if sort_enabled %>
-          <%= sort_arrow("report_date") %>
+          <%= sort_arrow(admin ? "created_at" : "report_date") %>
         <% end %>
       </th>
-      <th>操作</th>
+      <th class="align-middle">操作</th>
     </tr>
   </thead>
   <tbody>
@@ -23,7 +23,8 @@
         <% if admin %>
           <td><%= report.user&.name %></td>
         <% end %>
-        <td><%= report.report_date.strftime("%Y-%m-%d") %></td>
+        <td><%= admin ? report.created_at.strftime("%H:%M") : report.report_date.strftime("%Y-%m-%d") %></td>
+
         <td class="d-flex align-items-center">
           <div class="me-2">
             <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
@@ -34,7 +35,7 @@
               type="button"
               class="btn btn-sm btn-outline-dark btn-hover-red"
               data-action="click->modal#show"
-              data-url="<%= report_path(report) %>">
+              data-url="<%= admin ? admin_report_path(report) : report_path(report) %>">
               削除
             </button>
             <%= render partial: "share/delete_alert" %>

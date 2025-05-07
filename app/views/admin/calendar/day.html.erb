@@ -1,6 +1,6 @@
 <div class="calendar-header">
   <div class="calendar-header-left">
-    <%= link_to '今日', admin_calendar_day_path(date: Date.today.strftime('%Y-%m-%d')), class: 'today-button' %>
+    <%= link_to '今日', admin_calendar_day_path(date: Date.today.strftime('%Y-%m-%d')), class: 'today-button border' %>
     <div class="arrow-buttons">
       <%= link_to admin_calendar_day_path(date: @previous_date), class: 'arrow-button' do %>
         <i class="bi bi-chevron-left"></i>
@@ -32,44 +32,4 @@
   </div>
 </div>
 
-
-  <table class="table table-striped">
-  <thead class="table-dark">
-    <tr>
-      <th>ID</th>
-      <th>タイトル</th>
-      <th>作成者</th>
-      <th>
-        作成時刻
-        <%= sort_arrow("report_date") %>
-      </th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @reports.each do |report| %>
-      <tr>
-        <td><%= report.id %></td>
-        <td><%= report.title %></td>
-        <td><%= report.user&.name %></td>
-        <td><%= report.created_at.strftime("%H:%M") %></td>
-        <td class="d-flex align-items-center">
-          <div class="me-2">
-            <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
-          </div>
-          <%= link_to "詳細", admin_report_path(report), class: "btn btn-primary btn-sm m-0 me-2" %>
-          <div data-controller="modal">
-            <button
-              type="button"
-              class="btn btn-sm btn-outline-dark btn-hover-red"
-              data-action="click->modal#show"
-              data-url="<%= admin_report_path(report) %>">
-              削除
-            </button>
-            <%= render partial: "share/delete_alert" %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: "share/reports_table", locals: { reports: @reports, admin: true } %>

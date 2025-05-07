@@ -6,7 +6,7 @@ class Report < ApplicationRecord
   has_many :favorite_users, through: :favorites, source: :user
 
   scope :sorted_by, ->(column, direction) {
-    column = %w[report_date title].include?(column) ? column : "report_date"
+    column = %w[report_date title created_at].include?(column) ? column : "report_date"
     direction = %w[asc desc].include?(direction) ? direction : "desc"
     order(column => direction)
   }
