@@ -472,6 +472,7 @@ button#menu-toggle {
         align-items: center;
         height: 100%;
         gap: 15px;
+        width: 40%;
     }
 
     .today-button {
@@ -515,6 +516,7 @@ button#menu-toggle {
 
     .search_bar_container {
         height: 100%;
+        flex-grow: 1;
     }
 
     .btn-group .btn,
