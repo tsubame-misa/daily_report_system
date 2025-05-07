@@ -15,6 +15,11 @@ class Admin::CalendarController < Admin::BaseController
     @reports = Report.includes(:user)
     @reports = @reports.where(report_date: @selected_date).keyword_search(params[:q])
 
+    return unless ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
+
+    favorite_report_ids = current_user.favorites.pluck(:report_id)
+    @reports = @reports.where(id: favorite_report_ids)
+
     # @reports = @reports
     #            .sorted_by(sort, direction)
     #            .keyword_search(keyword)
@@ -45,6 +50,11 @@ class Admin::CalendarController < Admin::BaseController
     all_reports = Report.includes(:user, :favorites)
                         .where(report_date: start_date.beginning_of_day..end_date.end_of_day)
                         .keyword_search(params[:q])
+
+    if ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
+      favorite_report_ids = current_user.favorites.pluck(:report_id)
+      all_reports = all_reports.where(id: favorite_report_ids)
+    end
 
     # 日付ごとのレポート数を保持
     @reports_count_by_date = all_reports.group(:report_date).count
