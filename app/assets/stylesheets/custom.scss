@@ -515,6 +515,9 @@ button#menu-toggle {
     .btn-group .btn:hover,
     .btn-group .btn:focus {
         margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
     }
 }
 
