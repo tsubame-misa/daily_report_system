@@ -3,17 +3,19 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>タイトル</th>
+      <th class="align-middle">タイトル</th>
       <% if admin %>
-        <th>作成者</th>
+        <th class="align-middle">作成者</th>
       <% end %>
-      <th>
-        日付
-        <%if sort_enabled %>
-          <%= sort_arrow("report_date") %>
-        <% end %>
-      </th>
-      <th>操作</th>
+      <% if !admin %>
+        <th class="align-middle">
+          日付
+          <%if sort_enabled %>
+            <%= sort_arrow("report_date") %>
+          <% end %>
+        </th>
+      <% end %>
+      <th class="align-middle">操作</th>
     </tr>
   </thead>
   <tbody>
@@ -23,7 +25,9 @@
         <% if admin %>
           <td><%= report.user&.name %></td>
         <% end %>
-        <td><%= report.report_date.strftime("%Y-%m-%d") %></td>
+        <% if !admin %>
+          <td><%= report.report_date.strftime("%Y-%m-%d") %></td>
+        <% end %>
         <td class="d-flex align-items-center">
           <div class="me-2">
             <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
