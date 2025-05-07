@@ -15,17 +15,17 @@
     <div class="search_bar_container">
       <%= render_search_bar(path: admin_calendar_month_path(month: @selected_month)) %>
     </div>
-    <div class="btn-group rounded-pill border overflow-hidden" role="group">
-      <%= link_to admin_calendar_month_path(month: @selected_date.strftime('%Y-%m')), 
-          class: "btn ps-3 pe-3 py-2 d-flex align-items-center justify-content-center #{action_name == 'month' ? 'text-dark' : 'bg-dark text-white-50'}",
+    <div class="btn-group rounded-pill border overflow-hidden calendar-toggle" role="group">
+      <%= link_to admin_calendar_month_path(month: @selected_date.strftime('%Y-%m')),
+          class: "btn px-3 py-2 d-flex align-items-center justify-content-center #{action_name == 'month' ? 'bg-secondary text-white' : 'bg-light text-dark'}",
           title: "月別表示" do %>
-          <i class="bi bi-calendar3"></i>
+        <i class="bi bi-calendar3"></i>
       <% end %>
 
-      <%= link_to admin_calendar_day_path(date: @selected_date.strftime('%Y-%m-%d')), 
-          class: "btn px-3 py-2 d-flex align-items-center justify-content-center #{action_name == 'day' ? 'text-dark' : 'bg-dark text-white-50'}",
+      <%= link_to admin_calendar_day_path(date: @selected_date.strftime('%Y-%m-%d')),
+          class: "btn px-3 py-2 d-flex align-items-center justify-content-center #{action_name == 'day' ? 'bg-secondary text-white' : 'bg-light text-dark'}",
           title: "日別表示" do %>
-          <i class="bi bi-calendar3-event"></i>
+        <i class="bi bi-calendar3-event"></i>
       <% end %>
     </div>
   </div>
