@@ -12,6 +12,7 @@
     <p class="text-center mb-0 fs-5"><%= @selected_year %>年 <%= @selected_month %>月</p>
   </div>
   <div class="calendar-header-right">
+    <%= favorite_filter_link %>
     <div class="search_bar_container">
       <%= render_search_bar(path: admin_calendar_month_path(month: @selected_month)) %>
     </div>
