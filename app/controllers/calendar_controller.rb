@@ -10,12 +10,7 @@ class CalendarController < ApplicationController
   private
 
   def set_calendar_dates
-    @selected_date = if params[:date].present?
-                       Date.parse("#{params[:date]}-01")
-                     else
-                       Date.today
-                     end
-
+    @selected_date = params[:month].present? ? Date.parse("#{params[:month]}-01") : Date.today
     @selected_month = @selected_date.month
     @selected_year = @selected_date.year
 

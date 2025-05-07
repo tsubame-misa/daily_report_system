@@ -1,28 +1,34 @@
-<div class="mb-1">
-
-
-  <div class="d-flex justify-content-between align-items-baseline">
-    <h1 class="fs-2 mb-0">
-      <%= current_user.admin? ? "日報一覧(day)" : "日報一覧" %>
-    </h1>
+<div class="calendar-header">
+  <div class="calendar-header-left">
+    <%= link_to '今日', admin_calendar_day_path(day: Date.today.strftime('%Y-%m-%d')), class: 'today-button' %>
+    <div class="arrow-buttons">
+      <%= link_to admin_calendar_day_path(day: @previous_date), class: 'arrow-button' do %>
+        <i class="bi bi-chevron-left"></i>
+      <% end %>
+      <%= link_to admin_calendar_day_path(day: @next_date), class: 'arrow-button' do %>
+      <i class="bi bi-chevron-right"></i>
+    <% end %>
+    </div>
+    <p class="text-center mb-0 fs-5"><%= @selected_date.strftime('%Y年%m月%d日') %></p>
   </div>
-  <%= render_search_bar(path: admin_calendar_day_path) %>
+  <div class="calendar-header-right">
+    <div class="search_bar_container">
+      <%= render_search_bar(path: admin_calendar_day_path(day: @selected_date)) %>
+    </div>
+    <div class="btn-group rounded-pill border overflow-hidden calendar-toggle" role="group">
+      <%= link_to admin_calendar_month_path(month: @selected_date.strftime('%Y-%m')),
+          class: "btn px-3 py-2 d-flex align-items-center justify-content-center #{action_name == 'month' ? 'bg-secondary text-white' : 'bg-light text-dark'}",
+          title: "月別表示" do %>
+        <i class="bi bi-calendar3"></i>
+      <% end %>
 
-  <div class="d-flex align-items-center justify-content-between my-3">
-  <% prev_date = (@selected_date - 1.day).strftime("%Y-%m-%d") %>
-  <% next_date = (@selected_date + 1.day).strftime("%Y-%m-%d") %>
-  <% today = Date.today.strftime("%Y-%m-%d") %>
-
-  <div class="d-flex align-items-center gap-2">
-    <%= link_to "← 前日", admin_calendar_day_path(date: prev_date), class: "btn btn-outline-secondary" %>
-    <%= link_to "今日", admin_calendar_day_path(date: today), class: "btn btn-outline-primary" %>
+      <%= link_to admin_calendar_day_path(date: @selected_date.strftime('%Y-%m-%d')),
+          class: "btn px-3 py-2 d-flex align-items-center justify-content-center #{action_name == 'day' ? 'bg-secondary text-white' : 'bg-light text-dark'}",
+          title: "日別表示" do %>
+        <i class="bi bi-calendar3-event"></i>
+      <% end %>
+    </div>
   </div>
-
-  <span class="fs-4 fw-bold">
-    <%= @selected_date.strftime("%Y年%m月%d日") %>
-  </span>
-
-  <%= link_to "翌日 →",admin_calendar_day_path(date: next_date), class: "btn btn-outline-secondary" %>
 </div>
 
 

@@ -1,10 +1,17 @@
 <%# カレンダーのヘッダー部分 %>
 <div class="user-calendar-container mb-4">
-  <div class="user-calendar-header">
-    <h2 class="text-center"><%= @selected_year %>年 <%= @selected_month %>月</h2>
-    <div class="navigation-buttons">
-      <%= link_to '前月', calendar_month_path(date: @prev_month), class: 'btn btn-outline-primary' %>
-      <%= link_to '次月', calendar_month_path(date: @next_month), class: 'btn btn-outline-primary' %>
+  <div class="calendar-header">
+    <div class="calendar-header-left">
+      <%= link_to '今月', calendar_month_path(month: Date.today.strftime('%Y-%m')), class: 'today-button' %>
+      <div class="arrow-buttons">
+        <%= link_to calendar_month_path(month: @prev_month), class: 'arrow-button' do %>
+          <i class="bi bi-chevron-left"></i>
+        <% end %>
+        <%= link_to calendar_month_path(month: @next_month), class: 'arrow-button' do %>
+        <i class="bi bi-chevron-right"></i>
+      <% end %>
+      </div>
+      <p class="text-center mb-0 fs-5"><%= @selected_year %>年 <%= @selected_month %>月</p>
     </div>
   </div>
 

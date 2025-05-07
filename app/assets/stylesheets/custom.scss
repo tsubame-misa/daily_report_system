@@ -453,6 +453,80 @@ button#menu-toggle {
     }
 }
 
+.calendar-header {
+    margin-bottom: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .calendar-header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        height: 100%;
+    }
+
+    .calendar-header-right {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        gap: 15px;
+    }
+
+    .today-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 20px;
+        border-radius: 9999px;
+        border: 1px solid #000;
+        color: #000;
+        text-decoration: none;
+        font-size: 0.8rem;
+        height: 40px;
+
+        &:hover {
+            background-color: #dadada;
+        }
+    }
+
+    .arrow-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .arrow-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1/1;
+        height: 30px;
+        border-radius: 50%;
+        color: #000;
+        text-decoration: none;
+
+        &:hover {
+            background-color: #dadada;
+        }
+    }
+
+    .search_bar_container {
+        height: 100%;
+    }
+
+    .btn-group .btn,
+    .btn-group .btn:hover,
+    .btn-group .btn:focus {
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+}
+
 .user-calendar {
     width: 100%;
     border-collapse: separate;
@@ -594,6 +668,7 @@ button#menu-toggle {
     right: 12px;
     top: 2px;
     height: 100%;
+
     button {
         outline: none;
         border: none;
