@@ -33,9 +33,17 @@ class ReportsController < ApplicationController
 
   def new
     @report = current_user.reports.build
-    if params[:date].present?
-      selected_month = Date.parse(params[:date]).strftime('%Y-%m')
-      @cancel_path = calendar_month_path(month: selected_month)
+    referer = request.referer
+    referer_path = referer.present? ? URI.parse(referer).path : nil
+    if referer_path == calendar_month_path
+      if params[:date].present?
+        selected_month = Date.parse(params[:date]).strftime('%Y-%m')
+        @cancel_path = calendar_month_path(month: selected_month)
+      else
+        @cancel_path = calendar_month_path
+      end
+    elsif referer_path&.start_with?(reports_path)
+      @cancel_path = reports_path
     else
       @cancel_path = calendar_month_path
     end
@@ -43,8 +51,9 @@ class ReportsController < ApplicationController
 
   def create
     @report = current_user.reports.build(report_params)
+    redirect_path = params[:from].presence || calendar_month_path
     if @report.save
-      redirect_to calendar_month_path, notice: '日報が作成されました。'
+      redirect_to redirect_path, notice: '日報が作成されました。'
     else
       flash.now[:alert] = @report.formatted_error_messages
       render :new, status: :unprocessable_entity

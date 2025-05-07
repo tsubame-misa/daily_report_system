@@ -15,6 +15,7 @@
 
 
 <%= form_with model: report, url: form_url, local: true, html: { class: form_class } do |form| %>
+  <%= hidden_field_tag :from, @cancel_path %>
   <div class="mb-4">
     <div class="d-flex align-items-center mb-2">
       <%= form.label :report_date, '日付', class: "form-label me-2 mb-0 fw-bold" %>
@@ -39,7 +40,7 @@
   <div class="d-flex justify-content-end gap-3 mt-5">
     <%= render 'share/bootstrap_dark_button',
       text: 'キャンセル',
-      path: origin_path, 
+      path: cancel_path,
       size_class: 'btn-lg',
       extra_classes: 'btn btn-lg btn-outline-dark btn-hover-red'
     %>
