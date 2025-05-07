@@ -1,5 +1,6 @@
 class Admin::ReportsController < Admin::BaseController
   before_action :set_report, only: %i[show destroy edit update]
+  before_action :set_admin_origins, only: %i[show edit]
 
   def index
     start_date = params[:start_date]
@@ -46,7 +47,7 @@ class Admin::ReportsController < Admin::BaseController
   def destroy
     report_date = @report.report_date
     @report.destroy
-    redirect_to admin_calendar_day_path(date: report_date), notice: '日報が削除されました。'
+    redirect_to(session.delete(:admin_origin_level1) || admin_reports_path, notice: '日報が削除されました。')
   end
 
   private
@@ -54,6 +55,22 @@ class Admin::ReportsController < Admin::BaseController
   def set_report
     @report = Report.find_by(id: params[:id])
     not_found unless @report
+  end
+
+  def set_admin_origins
+    if action_name == 'show'
+      # edit画面から戻ってきた場合はadmin_origin_level1を上書きしない
+      if (request.referer&.include?(admin_calendar_month_path) ||
+          request.referer&.include?(admin_calendar_day_path) ||
+          (request.referer&.include?(admin_reports_path) && !request.referer&.include?('/edit')))
+        session[:admin_origin_level1] = request.referer
+      end
+      session.delete(:admin_origin_level2)
+    elsif action_name == 'edit'
+      session[:admin_origin_level2] = session[:admin_origin_level1]
+    end
+    @admin_origin_level1 = session[:admin_origin_level1]
+    @admin_origin_level2 = session[:admin_origin_level2]
   end
 
   def report_params
