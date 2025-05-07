@@ -45,9 +45,10 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def destroy
-    report_date = @report.report_date
     @report.destroy
-    redirect_to(session.delete(:admin_origin_level1) || admin_reports_path, notice: '日報が削除されました。')
+    # セッションにadmin_origin_level1があればそこに戻る。なければreferer、さらにダメならadmin_reports_path
+    redirect_to(session[:admin_origin_level1].presence || request.referer || admin_reports_path, notice: '日報が削除されました。')
+    session.delete(:admin_origin_level1)
   end
 
   private
@@ -59,10 +60,11 @@ class Admin::ReportsController < Admin::BaseController
 
   def set_admin_origins
     if action_name == 'show'
-      # edit画面から戻ってきた場合はadmin_origin_level1を上書きしない
-      if (request.referer&.include?(admin_calendar_month_path) ||
-          request.referer&.include?(admin_calendar_day_path) ||
-          (request.referer&.include?(admin_reports_path) && !request.referer&.include?('/edit')))
+      if params[:origin].present?
+        session[:admin_origin_level1] = params[:origin]
+      elsif request.referer&.include?(admin_calendar_month_path) ||
+            request.referer&.include?(admin_calendar_day_path) ||
+            (request.referer&.include?(admin_reports_path) && !request.referer&.include?('/edit'))
         session[:admin_origin_level1] = request.referer
       end
       session.delete(:admin_origin_level2)
