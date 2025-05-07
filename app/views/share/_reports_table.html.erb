@@ -33,7 +33,16 @@
             <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
           </div>
           <%= link_to "詳細", admin ? admin_report_path(report) : report_path(report), class: "btn btn-sm m-0 me-2 btn-outline-dark" %>
-          <%= button_to "削除", admin ? admin_report_path(report) : report_path(report), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-outline-dark btn-hover-red" %>
+          <div data-controller="modal">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-dark btn-hover-red"
+              data-action="click->modal#show"
+              data-url="<%= report_path(report) %>">
+              削除
+            </button>
+            <%= render partial: "share/delete_alert" %>
+          </div>
         </td>
       </tr>
     <% end %>

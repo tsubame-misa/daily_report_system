@@ -453,6 +453,80 @@ button#menu-toggle {
     }
 }
 
+.calendar-header {
+    margin-bottom: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .calendar-header-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        height: 100%;
+    }
+
+    .calendar-header-right {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        gap: 15px;
+    }
+
+    .today-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 20px;
+        border-radius: 9999px;
+        border: 1px solid #000;
+        color: #000;
+        text-decoration: none;
+        font-size: 0.8rem;
+        height: 40px;
+
+        &:hover {
+            background-color: #dadada;
+        }
+    }
+
+    .arrow-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .arrow-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1/1;
+        height: 30px;
+        border-radius: 50%;
+        color: #000;
+        text-decoration: none;
+
+        &:hover {
+            background-color: #dadada;
+        }
+    }
+
+    .search_bar_container {
+        height: 100%;
+    }
+
+    .btn-group .btn,
+    .btn-group .btn:hover,
+    .btn-group .btn:focus {
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+}
+
 .user-calendar {
     width: 100%;
     border-collapse: separate;
@@ -543,6 +617,66 @@ button#menu-toggle {
             height: 100%;
         }
     }
+
+    td.today-cell {
+        position: relative;
+    }
+
+    td.today-cell a.report-date,
+    td.today-cell a.new-report-date {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: #1976d2;
+        color: #fff !important;
+        font-weight: normal;
+        font-size: 1em;
+        box-shadow: 0 2px 6px rgba(25, 118, 210, 0.08);
+        transition: none;
+    }
+
+    td.today-cell a.report-date:hover,
+    td.today-cell a.new-report-date:hover {
+        background: #1976d2;
+        color: #fff !important;
+        text-decoration: none;
+    }
+}
+
+/* カレンダーセルのプラスボタン・編集ボタンのスタイル */
+.calendar-cell {
+    position: relative;
+}
+
+.calendar-plus-btn,
+.calendar-edit-btn {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    display: none;
+    background: #fff;
+    border: none;
+    color: #007bff;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 50%;
+    z-index: 2;
+    text-decoration: none;
+}
+
+.calendar-cell:hover .calendar-plus-btn,
+.calendar-cell:hover .calendar-edit-btn {
+    display: inline-block;
+}
+
+.calendar-plus-btn:focus,
+.calendar-edit-btn:focus {
+    outline: none;
 }
 
 /* 最近の日報セクションのスタイル */
@@ -594,6 +728,7 @@ button#menu-toggle {
     right: 12px;
     top: 2px;
     height: 100%;
+
     button {
         outline: none;
         border: none;
@@ -607,4 +742,20 @@ button#menu-toggle {
 
 .form-switch-lg {
     transform: scale(1.3);
+}
+
+.favorite-only-toggle .form-check-input:checked {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.favorite-only-toggle .form-check-input:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.btn-hover-red:hover {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+    border-color: #dc3545 !important;
 }
