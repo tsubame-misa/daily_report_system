@@ -26,7 +26,7 @@ class Admin::CalendarController < Admin::BaseController
 
   def month
     # monthというqueryパラメータがあれば、その月を表示
-    @selected_date = params[:month].present? ? Date.parse("#{params[:month]}-01") : Date.today
+    @selected_date = params[:date].present? ? Date.parse("#{params[:date]}-01") : Date.today
     @selected_month = @selected_date.month
     @selected_year = @selected_date.year
 
