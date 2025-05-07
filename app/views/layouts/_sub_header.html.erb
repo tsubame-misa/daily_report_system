@@ -1,0 +1,18 @@
+<div class="container">
+  <ul class="nav nav-tabs mt-3">
+    <!-- カレンダー タブ（先頭） -->
+    <li class="nav-item">
+      <%= link_to "カレンダー",
+          calendar_month_path(month: Date.today.beginning_of_month.strftime("%Y-%m")),
+          class: "nav-link #{ request.path == '/calendar/month' ? 'active bg-white text-dark' : 'text-dark' }" %>
+    </li>
+
+    <!-- リスト タブ -->
+    <li class="nav-item">
+      <%= link_to "リスト",
+          reports_path,
+          class: "nav-link #{ request.path == '/reports' ? 'active bg-white text-dark' : 'text-dark' }" %>
+    </li>
+  </ul>
+</div>
+
