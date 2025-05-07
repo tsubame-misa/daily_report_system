@@ -4,9 +4,9 @@
       <%= link_to "日報管理システム", root_path, class: "navbar-brand text-dark fw-bold" %>
         <% if user_signed_in? && current_user.admin? %>
           <% if request.path.start_with?('/admin') %>
-            <%= link_to "個人ページへ", calendar_month_path, class: "nav-link text-dark fw-bold text-decoration-underline me-3" %>
+            <%= link_to "個人ページへ", calendar_month_path, class: "nav-link text-dark fw-bold header-link me-3" %>
           <% else %>
-            <%= link_to "管理者ページへ", admin_calendar_month_path, class: "nav-link text-dark fw-bold text-decoration-underline me-3" %>
+            <%= link_to "管理者ページへ", admin_calendar_month_path, class: "nav-link text-dark fw-bold header-link me-3" %>
           <% end %>
         <% end %>
       <ul class="navbar-nav ms-auto">

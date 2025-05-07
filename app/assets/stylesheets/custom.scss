@@ -776,3 +776,9 @@ button#menu-toggle {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.header-link {
+    &:hover {
+        text-decoration: underline;
+    }
+}
