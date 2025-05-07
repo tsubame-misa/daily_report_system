@@ -688,3 +688,8 @@ button#menu-toggle {
     background-color: #6c757d;
     border-color: #6c757d;
 }
+
+.favorite-only-toggle .form-check-input:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
