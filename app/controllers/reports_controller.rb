@@ -33,6 +33,12 @@ class ReportsController < ApplicationController
 
   def new
     @report = current_user.reports.build
+    if params[:date].present?
+      selected_month = Date.parse(params[:date]).strftime('%Y-%m')
+      @cancel_path = calendar_month_path(month: selected_month)
+    else
+      @cancel_path = calendar_month_path
+    end
   end
 
   def create

@@ -2,7 +2,7 @@
 <div class="user-calendar-container mb-4">
   <div class="calendar-header">
     <div class="calendar-header-left">
-      <%= link_to '今月', calendar_month_path(month: Date.today.strftime('%Y-%m')), class: 'today-button' %>
+      <%= link_to '今月', calendar_month_path(month: Date.today.strftime('%Y-%m')), class: 'today-button border' %>
       <div class="arrow-buttons">
         <%= link_to calendar_month_path(month: @prev_month), class: 'arrow-button' do %>
           <i class="bi bi-chevron-left"></i>
