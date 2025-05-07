@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
+
+import ModalController from "./modals_controller"
+application.register("modal", ModalController)

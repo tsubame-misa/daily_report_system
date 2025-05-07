@@ -1,0 +1,28 @@
+<% question_text = local_assigns[:question_text] || "本当に削除しますか？" %>
+<% confirm_button_text = local_assigns[:confirm_button_text] || "削除する" %>
+
+<div
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    data-modal-target="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">warning</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+            </div>
+            <div class="modal-body">
+                <%= question_text %>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-outline-dark" data-bs-dismiss="modal">キャンセル</button>
+            <form data-modal-target="form" method="post">
+                <input type="hidden" name="_method" value="delete" />
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                <button type="submit" class="btn btn-sm btn-outline-dark btn-hover-red"><%= confirm_button_text %></button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
