@@ -56,7 +56,7 @@ class ReportsController < ApplicationController
 
   def destroy
     @report.destroy
-    redirect_to reports_path, notice: '日報が削除されました。'
+    redirect_to(session.delete(:origin_level1) || reports_path, notice: '日報が削除されました。')
   end
 
   private
