@@ -400,14 +400,19 @@ button#menu-toggle {
 }
 
 .more-link {
+    width: 100%;
+
     font-size: 0.8em;
     margin-top: 2px;
-    text-align: right;
+    text-align: center;
     padding-right: 5px;
 
     a {
+        width: 90%;
+        margin: 0 auto;
+
         &:hover {
-            text-decoration: underline !important;
+            background-color: #f0f0f0;
         }
     }
 }
