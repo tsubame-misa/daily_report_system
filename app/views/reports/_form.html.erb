@@ -9,6 +9,10 @@
   <% (context == :admin) ? admin_calendar_month_path : calendar_month_path %>
 <% end %>
 
+
+<% cancel_path = @cancel_path if defined?(@cancel_path) && @cancel_path.present? %>
+
+
 <%= form_with model: report, url: form_url, local: true, html: { class: form_class } do |form| %>
   <div class="mb-4">
     <div class="d-flex align-items-center mb-2">
