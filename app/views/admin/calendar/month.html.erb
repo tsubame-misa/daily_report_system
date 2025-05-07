@@ -48,7 +48,11 @@
           <td class="<%= 'outside-month' if date.month != @selected_month %>">
             <div class="date-label">
               <% if request.path.start_with?('/admin') %>
-                <%= link_to date.day, admin_calendar_day_path(date: date.strftime('%Y-%m-%d')), class: "text-decoration-none text-dark" %>
+              <% is_today = (date == Date.today) %>
+              <% puts is_today; %>
+              <%= link_to date.day, admin_calendar_day_path(date: date.strftime('%Y-%m-%d')), 
+                  class: "text-decoration-none text-dark #{'today-button-admin' if is_today}" %>
+                
               <% else %>
                 <span class="text-dark"><%= date.day %></span>
               <% end %>
