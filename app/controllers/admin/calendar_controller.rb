@@ -1,7 +1,7 @@
 class Admin::CalendarController < Admin::BaseController
   before_action :authenticate_user!
   def day
-    @selected_date = params[:day].present? ? Date.parse("#{params[:day]}") : Date.today
+    @selected_date = params[:date].present? ? Date.parse("#{params[:date]}") : Date.today
     @previous_date = (@selected_date - 1.day).strftime('%Y-%m-%d')
     @next_date = (@selected_date + 1.day).strftime('%Y-%m-%d')
 
