@@ -34,9 +34,8 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def update
-    @report.update(report_params)
-    if @report.save
-      redirect_to admin_calendar_month_path, notice: "日報を更新しました。"
+    if @report.update(report_params)
+      redirect_to admin_report_path(@report), notice: '日報を更新しました。'
     else
       @admin_context = true
       flash.now[:alert] = @report.formatted_error_messages

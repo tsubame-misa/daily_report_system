@@ -47,7 +47,7 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      redirect_to calendar_month_path, notice: '日報を更新しました。'
+      redirect_to report_path(@report), notice: '日報を更新しました。'
     else
       flash.now[:alert] = @report.formatted_error_messages
       render :edit, status: :unprocessable_entity
