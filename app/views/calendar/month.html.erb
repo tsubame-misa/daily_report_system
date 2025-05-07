@@ -35,9 +35,9 @@
                   <button type="button" class="calendar-edit-btn" tabindex="-1">✎</button>
                   <%= link_to date.day, report_path(@report_dates[date]), class: 'report-date' %>
                 <% else %>
-                  <button type="button" class="calendar-plus-btn" tabindex="-1">＋</button>
-                  <%= link_to date.day, new_report_path(date: date.strftime('%Y-%m-%d')), class: 'new-report-date' %>
-                <% end %>
+                <%= link_to '＋', new_report_path(date: date.strftime('%Y-%m-%d')), class: 'calendar-plus-btn' %>
+                <%= link_to date.day, new_report_path(date: date.strftime('%Y-%m-%d')), class: 'new-report-date' %>
+              <% end %>
               </td>
             <% end %>
           <% end %>
