@@ -539,6 +539,35 @@ button#menu-toggle {
     }
 }
 
+/* カレンダーセルのプラスボタン・編集ボタンのスタイル */
+.calendar-cell {
+    position: relative;
+}
+
+.calendar-plus-btn, .calendar-edit-btn {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    display: none;
+    background: #fff;
+    border: none;
+    color: #007bff;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.calendar-cell:hover .calendar-plus-btn,
+.calendar-cell:hover .calendar-edit-btn {
+    display: inline-block;
+}
+
+.calendar-plus-btn:focus, .calendar-edit-btn:focus {
+    outline: none;
+}
+
 /* 最近の日報セクションのスタイル */
 .recent-reports-container {
     .card {
