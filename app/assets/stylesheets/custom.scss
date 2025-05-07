@@ -573,3 +573,32 @@ button#menu-toggle {
         }
     }
 }
+
+.search_bar_input {
+    border-radius: 23px;
+    background-color: #ececec;
+    border: 1px solid #000;
+    padding: 8px 12px 8px 17px;
+    outline: none;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.search_bar_submit {
+    right: 12px;
+    top: 2px;
+    height: 100%;
+    button {
+        outline: none;
+        border: none;
+    }
+}
+
+.arrow-button {
+    border: none !important;
+    outline: none !important;
+}
+
+.form-switch-lg {
+    transform: scale(1.3);
+}
