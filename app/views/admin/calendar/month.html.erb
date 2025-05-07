@@ -1,15 +1,34 @@
-<div class="mb-3">
-  <%= render 'layouts/calendar_tab' %>
-</div>
+<div class="calendar-header">
+  <div class="calendar-header-left">
+    <%= link_to '今月', admin_calendar_month_path(month: Date.today.strftime('%Y-%m')), class: 'today-button' %>
+    <div class="arrow-buttons">
+      <%= link_to admin_calendar_month_path(month: @prev_month), class: 'arrow-button' do %>
+        <i class="bi bi-chevron-left"></i>
+      <% end %>
+      <%= link_to admin_calendar_month_path(month: @next_month), class: 'arrow-button' do %>
+      <i class="bi bi-chevron-right"></i>
+    <% end %>
+    </div>
+    <p class="text-center mb-0 fs-5"><%= @selected_year %>年 <%= @selected_month %>月</p>
+  </div>
+  <div class="calendar-header-right">
+    <div class="search_bar_container">
+      <%= render_search_bar(path: admin_calendar_month_path(month: @selected_month)) %>
+    </div>
+    <div class="btn-group rounded-pill border overflow-hidden" role="group">
+      <%= link_to admin_calendar_month_path(month: @selected_date.strftime('%Y-%m')), 
+          class: "btn ps-3 pe-3 py-2 d-flex align-items-center justify-content-center #{action_name == 'month' ? 'text-dark' : 'bg-dark text-white-50'}",
+          title: "月別表示" do %>
+          <i class="bi bi-calendar3"></i>
+      <% end %>
 
-<div class="d-flex align-items-center justify-content-between my-3">
-  <%= link_to "← 前月", admin_calendar_month_path(month: @prev_month), class: "btn btn-outline-secondary" %>
-
-  <h2 class="fs-4 fw-bold mb-0">
-    <%= "#{@selected_year}年#{@selected_month}月の日報カレンダー" %>
-  </h2>
-
-  <%= link_to "次月 →", admin_calendar_month_path(month: @next_month), class: "btn btn-outline-secondary" %>
+      <%= link_to admin_calendar_day_path(date: @selected_date.strftime('%Y-%m-%d')), 
+          class: "btn px-3 py-2 d-flex align-items-center justify-content-center #{action_name == 'day' ? 'text-dark' : 'bg-dark text-white-50'}",
+          title: "日別表示" do %>
+          <i class="bi bi-calendar3-event"></i>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <!-- 📅 カレンダー表示 -->

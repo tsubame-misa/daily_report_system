@@ -30,6 +30,17 @@
   </span>
 
   <%= link_to "翌日 →",admin_calendar_day_path(date: next_date), class: "btn btn-outline-secondary" %>
+
+  <div class="calendar-header-right">
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <%= link_to admin_calendar_month_path(month: @selected_date.strftime('%Y-%m')), class: "btn btn-outline-primary" do %>
+        月
+      <% end %>
+
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="btnradio2">日</label>
+    </div>
+  </div>
 </div>
 
 
