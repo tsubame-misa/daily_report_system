@@ -527,6 +527,19 @@ button#menu-toggle {
     }
 }
 
+.today-button-admin {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background-color: #1976d2;
+    color: #fff !important;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
 .user-calendar {
     width: 100%;
     border-collapse: separate;
