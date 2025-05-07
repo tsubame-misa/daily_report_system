@@ -13,7 +13,7 @@
   </div>
   <div class="calendar-header-right">
     <div class="search_bar_container">
-      <%= render_search_bar(path: admin_calendar_month_path(month: @selected_month)) %>
+      <%= render_search_bar(path: admin_calendar_month_path(month: @selected_month), placeholder: "ユーザー検索") %>
     </div>
     <div class="btn-group rounded-pill border overflow-hidden calendar-toggle" role="group">
       <%= link_to admin_calendar_month_path(month: @selected_date.strftime('%Y-%m')),
@@ -84,4 +84,3 @@
     <% end %>
   </tbody>
 </table>
-
