@@ -7,16 +7,12 @@
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
@@ -24,12 +20,23 @@
   <body>
     <%= render "share/toast_message" %>
     <%= render "layouts/header" %>
-
-
-    <% if user_signed_in? && current_user.admin? %>
-      <%= render 'share/admin/sub_nav' %>
-    <% end %> 
-
+    <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <div class="mb-3">
+          <% if request.path.start_with?("/admin") %>
+            <%# 管理者モード %>
+            <%= render 'layouts/admin/sub_header' %>
+          <% else %>
+            <%# 個人ページモード %>
+            <%= render 'layouts/sub_header' %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="mb-3">
+          <%= render 'layouts/sub_header' %>
+        </div>
+      <% end %>
+    <%end%>
     <div class="container mt-4">
       <%= yield %>
     </div>

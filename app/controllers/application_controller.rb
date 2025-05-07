@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.admin?
-      admin_calendar_day_path
+      admin_calendar_month_path
     else
       calendar_month_path
     end
