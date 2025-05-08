@@ -21,15 +21,17 @@ class ReportsController < ApplicationController
     end
 
     @reports = @reports
-                 .sorted_by(sort, direction)
-                 .keyword_search(keyword, ["reports.title", "reports.contents"])
+               .sorted_by(sort, direction)
+               .keyword_search(keyword, ["reports.title", "reports.contents"])
     if @favorite_only
       favorite_report_ids = current_user.favorites.pluck(:report_id)
       @reports = @reports.where(id: favorite_report_ids)
     end
   end
 
-  def show; end
+  def show
+    render locals: { hide_sub_header: true }
+  end
 
   def new
     @report = current_user.reports.build
@@ -47,6 +49,7 @@ class ReportsController < ApplicationController
     else
       @cancel_path = calendar_month_path
     end
+    render locals: { hide_sub_header: true }
   end
 
   def create
@@ -56,8 +59,12 @@ class ReportsController < ApplicationController
       redirect_to redirect_path, notice: '日報が作成されました。'
     else
       flash.now[:alert] = @report.formatted_error_messages
-      render :new, status: :unprocessable_entity
+      render :new, locals: { hide_sub_header: true }, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    render locals: { hide_sub_header: true }
   end
 
   def update
@@ -65,7 +72,7 @@ class ReportsController < ApplicationController
       redirect_to report_path(@report), notice: '日報を更新しました。'
     else
       flash.now[:alert] = @report.formatted_error_messages
-      render :edit, status: :unprocessable_entity
+      render :edit, locals: { hide_sub_header: true }, status: :unprocessable_entity
     end
   end
 
