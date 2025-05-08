@@ -26,6 +26,31 @@ h1 {
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+    width: 100%;
+    .col-title {
+        width: 20%;
+    }
+    .col-header-contents {
+        width: 35%;
+    }
+    .col-contents {
+        width: 35%;
+    }
+    .col-author {
+        width: 15%;
+    }
+    .col-date {
+        width: 15%;
+    }
+    .col-actions {
+        width: 15%;
+    }
+    td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 /* 必要に応じて、ボタンやフォームのスタイルも追加 */
@@ -806,4 +831,36 @@ button#menu-toggle {
 
 .no-border {
     border: none !important;
+}
+
+/* tooltipのカスタマイズ */
+.tooltip {
+  --bs-tooltip-bg: #ffffff;
+  --bs-tooltip-color: #495057;
+
+  .tooltip-inner {
+    background-color: var(--bs-tooltip-bg) !important;
+    color: var(--bs-tooltip-color);
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #6c757d;
+    opacity: 1 !important;
+  }
+
+  &.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #6c757d;
+  }
+
+  &.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #6c757d;
+  }
+
+  &.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: #6c757d;
+  }
+
+  &.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #6c757d;
+  }
 }

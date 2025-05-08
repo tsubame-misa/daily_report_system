@@ -4,6 +4,34 @@ import "./controllers"
 import * as bootstrap from "bootstrap"
 import "./menu";
 
+// tooltipの破棄関数
+function disposeTooltips() {
+  const existingTooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  existingTooltips.forEach(element => {
+    const tooltip = bootstrap.Tooltip.getInstance(element);
+    if (tooltip) {
+      tooltip.dispose();
+    }
+  });
+}
+
+// ページがキャッシュされる前にtooltipを破棄
+document.addEventListener('turbo:before-cache', disposeTooltips);
+
+// tooltipの初期化
+document.addEventListener('turbo:load', function() {
+  // 既存のtooltipを破棄
+  disposeTooltips();
+
+  // 新しいtooltipを初期化
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => {
+    return new bootstrap.Tooltip(tooltipTriggerEl, {
+      delay: { show: 100, hide: 100 } // ms
+    });
+  });
+});
+
 // エラーメッセージを保持する配列
 let validationErrors = [];
 
@@ -88,6 +116,15 @@ document.addEventListener('click', function(e) {
   // calendar-cellのtdかどうか判定
   const td = e.target.closest('td.calendar-cell');
   if (!td) return;
+
+  // 編集ボタンがクリックされた場合
+  if (e.target.closest('.calendar-edit-btn')) {
+    const link = td.querySelector('a.report-date');
+    if (link && link.href) {
+      window.location.href = `${link.href}/edit`;
+      return;
+    }
+  }
 
   // aタグやbuttonがクリックされた場合は何もしない
   if (e.target.closest('a') || e.target.closest('button')) return;

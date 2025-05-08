@@ -48,10 +48,10 @@
       text: 'キャンセル',
       path: cancel_path,
       size_class: 'btn-lg',
-      extra_classes: 'btn btn-lg btn-outline-dark btn-hover-red'
+      extra_classes: 'btn btn-lg btn-outline-dark'
     %>
 
     <% submit_text = report.persisted? ? '更新' : '登録' %>
-    <%= form.submit submit_text, class: "btn btn-lg btn-outline-dark btn-hover-red" %>
+    <%= form.submit submit_text, class: "btn btn-lg btn-outline-dark" %>
   </div>
 <% end %>
