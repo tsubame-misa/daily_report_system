@@ -46,21 +46,9 @@
   </div>
 
   <div class="mt-4">
-    <% 
-      referer = request.referer.to_s
-      if referer.include?('admin/calendar/day')
-        button_text = '日報一覧へ戻る'
-        # URLからdate=XXXXの部分を抽出
-        date_param = referer.match(/date=([\d-]+)/)
-        back_path = date_param ? admin_calendar_day_path(date: date_param[1]) : admin_calendar_day_path
-      else
-        button_text = 'カレンダーへ戻る'
-        back_path = admin_calendar_month_path
-      end
-    %>
     <%= render 'share/bootstrap_dark_button',
-          text: button_text,
-          path: back_path,
+          text: @admin_origin_level1.present? ? '戻る' : 'カレンダーへ戻る',
+          path: @admin_origin_level1 || admin_calendar_month_path,
           size_class: 'btn-lg',
           extra_classes: 'btn btn-lg btn-outline-dark' %>
   </div>
