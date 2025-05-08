@@ -3,7 +3,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th class="align-middle">タイトル</th>
+      <th class="align-middle ps-3">タイトル</th>
       <% if admin %>
         <th class="align-middle">作成者</th>
       <% end %>
@@ -19,7 +19,7 @@
   <tbody>
     <% reports.each do |report| %>
       <tr>
-        <td><%= report.title %></td>
+        <td class="ps-3"><%= report.title %></td>
         <% if admin %>
           <td><%= report.user&.name %></td>
         <% end %>
