@@ -1,11 +1,13 @@
-<turbo-frame id="favorite-button-<%= report.id %>">
-  <% if favorite&.id %>
-    <%= button_to report_favorite_path(report, favorite), method: :delete, class: "btn btn-link p-0" do %>
-      <i class="bi bi-suit-heart-fill text-danger fs-3"></i>
+<div data-bs-toggle="tooltip" data-bs-placement="top" title="いいね">
+  <turbo-frame id="favorite-button-<%= report.id %>">
+    <% if favorite&.id %>
+      <%= button_to report_favorite_path(report, favorite), method: :delete, class: "btn btn-link p-0" do %>
+        <i class="bi bi-suit-heart-fill text-danger fs-3"></i>
+      <% end %>
+    <% else %>
+      <%= button_to report_favorites_path(report), method: :post, class: "btn btn-link p-0" do %>
+        <i class="bi bi-suit-heart text-secondary fs-3"></i>
+      <% end %>
     <% end %>
-  <% else %>
-    <%= button_to report_favorites_path(report), method: :post, class: "btn btn-link p-0" do %>
-      <i class="bi bi-suit-heart text-secondary fs-3"></i>
-    <% end %>
-  <% end %>
-</turbo-frame>
+  </turbo-frame>
+</div>

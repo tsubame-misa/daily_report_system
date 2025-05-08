@@ -20,14 +20,19 @@
         <td><%= user.email %></td>
         <td><%= user.admin? ? "管理者" : "一般" %></td>
         <td class="d-flex align-items-center">
-          <%= link_to "編集", edit_admin_user_path(user), class: "btn btn-sm me-2 btn-outline-dark" %>
+          <%= link_to edit_admin_user_path(user), class: "btn btn-link text-secondary p-0 me-2 icon-hover", title: "編集", "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
+            <i class="bi bi-pencil-square fs-3"></i>
+          <% end %>
           <div data-controller="modal">
             <button
               type="button"
-              class="btn btn-sm btn-outline-dark btn-hover-red"
+              class="btn btn-link text-danger p-0 icon-hover"
               data-action="click->modal#show"
-              data-url="<%= admin_user_path(user) %>">
-              削除
+              data-url="<%= admin_user_path(user) %>"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              title="削除">
+              <i class="bi bi-trash fs-3"></i>
             </button>
             <%= render partial: "share/delete_alert" %>
           </div>

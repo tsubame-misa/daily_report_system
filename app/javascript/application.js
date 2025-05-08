@@ -4,6 +4,34 @@ import "./controllers"
 import * as bootstrap from "bootstrap"
 import "./menu";
 
+// tooltipの破棄関数
+function disposeTooltips() {
+  const existingTooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  existingTooltips.forEach(element => {
+    const tooltip = bootstrap.Tooltip.getInstance(element);
+    if (tooltip) {
+      tooltip.dispose();
+    }
+  });
+}
+
+// ページがキャッシュされる前にtooltipを破棄
+document.addEventListener('turbo:before-cache', disposeTooltips);
+
+// tooltipの初期化
+document.addEventListener('turbo:load', function() {
+  // 既存のtooltipを破棄
+  disposeTooltips();
+
+  // 新しいtooltipを初期化
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => {
+    return new bootstrap.Tooltip(tooltipTriggerEl, {
+      delay: { show: 100, hide: 100 } // ms
+    });
+  });
+});
+
 // エラーメッセージを保持する配列
 let validationErrors = [];
 
