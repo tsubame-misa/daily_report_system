@@ -2,7 +2,7 @@
   <%= hidden_fields_except(:q) %>
   <div class="position-relative w-100">
     <%= f.label :q, "キーワード検索", class: "form-label visually-hidden" %>
-    <div class="me-2 flex-grow-1">
+    <div class="flex-grow-1">
       <%= f.text_field :q, value: params[:q], class: "search_bar_input border", placeholder: placeholder %>
     </div>
     <div class="position-absolute search_bar_submit">
