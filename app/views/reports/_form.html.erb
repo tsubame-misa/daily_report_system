@@ -16,6 +16,12 @@
 
 <%= form_with model: report, url: form_url, local: true, html: { class: form_class } do |form| %>
   <%= hidden_field_tag :from, @cancel_path %>
+<% if context == :admin && report.persisted? %>
+<div class="mb-4 d-flex align-items-center">
+  <label class="form-label me-2 mb-0 fw-bold">作成者</label>
+  <span><%= report.user.name %></span>
+</div>
+<% end %>
   <div class="mb-4">
     <div class="d-flex align-items-center mb-2">
       <%= form.label :report_date, '日付', class: "form-label me-2 mb-0 fw-bold" %>
