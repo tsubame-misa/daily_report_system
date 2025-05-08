@@ -6,10 +6,7 @@
       <div class="w-50 me-1">
         <%= render_search_bar(path: reports_path, placeholder: "タイトル・内容で検索") %>
       </div>
-      <%= link_to new_report_path, class: "btn btn-dark" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-        新規作成
-      <% end %>
+      <%= link_to new_report_path, class: "btn btn-dark" do %>＋ 新規作成<% end %>
   </div>
   <% if @reports.any? %>
     <%= render partial: "share/reports_table", locals: { reports: @reports, admin: false } %>
