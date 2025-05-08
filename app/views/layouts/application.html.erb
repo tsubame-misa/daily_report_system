@@ -24,23 +24,25 @@
   <body>
     <%= render "share/toast_message" %>
     <%= render "layouts/header" %>
-    <% if user_signed_in? %>
-      <% if current_user.admin? %>
-        <div class="mb-3">
-          <% if request.path.start_with?("/admin") %>
-            <%# 管理者モード %>
-            <%= render 'layouts/admin/sub_header' %>
-          <% else %>
-            <%# 個人ページモード %>
+    <% unless local_assigns[:hide_sub_header] %>
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <div class="mb-3">
+            <% if request.path.start_with?("/admin") %>
+              <%# 管理者モード %>
+              <%= render 'layouts/admin/sub_header' %>
+            <% else %>
+              <%# 個人ページモード %>
+              <%= render 'layouts/sub_header' %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="mb-3">
             <%= render 'layouts/sub_header' %>
-          <% end %>
-        </div>
-      <% else %>
-        <div class="mb-3">
-          <%= render 'layouts/sub_header' %>
-        </div>
-      <% end %>
-    <%end%>
+          </div>
+        <% end %>
+      <%end%>
+    <% end %>
     <div class="container mt-4">
       <%= yield %>
     </div>
