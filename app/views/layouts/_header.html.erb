@@ -16,7 +16,10 @@
             <li class="nav-item">
               <% if user_signed_in? %>
                 <% if current_user.admin? &&request.path.start_with?('/admin') %>
-                  <span class="nav-link text-dark py-1 pe-2 right-line">管理者モード <%= current_user.name %> さん</span>
+                  <span class="nav-link text-dark py-1 pe-2 right-line">
+                    <span class="fw-bold me-1">管理者モード</span>
+                    <span><%= current_user.name %> さん
+                  </span>
                 <% else %>
                   <span class="nav-link text-dark py-1 pe-2 right-line"><%= current_user.name %> さん</span>
                 <% end %>
