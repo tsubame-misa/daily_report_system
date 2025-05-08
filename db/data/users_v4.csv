@@ -1,5 +1,6 @@
 email,name,password,role
 admin1@example.com,管理者,password,0
+member1@example.com,一般,password,1
 inoue.hanako@example.com,井上 花子,password,1
 inoue.ken@example.com,井上 健,password,1
 sasaki.ami@example.com,佐々木 亜美,password,1
