@@ -26,6 +26,21 @@ h1 {
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    .col-title {
+        width: 20%;
+    }
+    .col-contents {
+        max-width: 300px;
+    }
+    .col-author {
+        width: 15%;
+    }
+    .col-date {
+        width: 15%;
+    }
+    .col-actions {
+        width: 15%;
+    }
 }
 
 /* 必要に応じて、ボタンやフォームのスタイルも追加 */
