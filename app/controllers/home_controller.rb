@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       if current_user.admin?
-        redirect_to admin_calendar_day_path
+        redirect_to admin_calendar_month_path
       else
         redirect_to calendar_month_path
       end
