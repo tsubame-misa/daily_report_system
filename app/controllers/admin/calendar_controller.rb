@@ -14,7 +14,7 @@ class Admin::CalendarController < Admin::BaseController
 
     @reports = Report.includes(:user)
     @reports = @reports.where(report_date: @selected_date)
-                       .keyword_search(params[:q], ["users.name, reports.title"])
+                       .keyword_search(params[:q], ["users.name", "reports.title"])
                        .sorted_by(sort, direction)
 
     return unless ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
