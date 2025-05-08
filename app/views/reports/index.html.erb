@@ -11,5 +11,11 @@
         新規作成
       <% end %>
   </div>
-  <%= render partial: "share/reports_table", locals: { reports: @reports, admin: false } %>
+  <% if @reports.any? %>
+    <%= render partial: "share/reports_table", locals: { reports: @reports, admin: false } %>
+  <% else %>
+    <div class="alert alert-secondary mt-4" role="alert">
+      日報がありませんでした。新規作成するか、検索条件を変更してください。
+    </div>
+  <% end %>
 </div>
