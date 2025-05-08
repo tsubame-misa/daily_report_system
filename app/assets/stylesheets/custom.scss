@@ -26,11 +26,16 @@ h1 {
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+    width: 100%;
     .col-title {
         width: 20%;
     }
+    .col-header-contents {
+        width: 35%;
+    }
     .col-contents {
-        max-width: 300px;
+        width: 35%;
     }
     .col-author {
         width: 15%;
@@ -40,6 +45,11 @@ h1 {
     }
     .col-actions {
         width: 15%;
+    }
+    td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
