@@ -1,0 +1,22 @@
+email,name,password,role
+admin1@example.com,管理者,password,0
+inoue.hanako@example.com,井上 花子,password,1
+inoue.ken@example.com,井上 健,password,1
+sasaki.ami@example.com,佐々木 亜美,password,1
+kato.hikari@example.com,加藤 光,password,1
+kato.takuya@example.com,加藤 拓也,password,1
+saito.sho@example.com,斎藤 翔,password,1
+yamazaki.naoki@example.com,山崎 直樹,password,1
+kato.ai@example.com,加藤 愛,password,1
+kato.mayumi@example.com,加藤 真由美,password,1
+yamada.sho@example.com,山田 翔,password,1
+kobayashi.ami@example.com,小林 亜美,password,1
+nakamura.naoto@example.com,中村 直人,password,1
+matsumoto.megumi@example.com,松本 恵,password,1
+yamamoto.ai@example.com,山本 愛,password,1
+saito.aya@example.com,斎藤 彩,password,1
+yamaguchi.ichiro@example.com,山口 一郎,password,1
+shimizu.hikari@example.com,清水 光,password,1
+matsumoto.ichiro@example.com,松本 一郎,password,1
+yamamoto.makoto@example.com,山本 誠,password,1
+yamaguchi.yuko@example.com,山口 優子,password,1
