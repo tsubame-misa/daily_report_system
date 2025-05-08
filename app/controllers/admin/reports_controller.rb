@@ -1,6 +1,6 @@
 class Admin::ReportsController < Admin::BaseController
   before_action :set_report, only: %i[show destroy edit update]
-  before_action :set_admin_origins, only: %i[show edit]
+  before_action :set_admin_origins, only: %i[show edit destroy]
 
   def index
     start_date = params[:start_date]

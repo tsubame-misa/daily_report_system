@@ -1,8 +1,8 @@
 class ReportsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_report, only: %i[show edit update destroy]
-  before_action :set_origin, only: %i[show edit]
-  before_action :set_origins, only: %i[show edit]
+  before_action :set_origin, only: %i[show edit destroy]
+  before_action :set_origins, only: %i[show edit destroy]
 
   def index
     start_date = params[:start_date]
@@ -51,7 +51,7 @@ class ReportsController < ApplicationController
 
   def create
     @report = current_user.reports.build(report_params)
-    redirect_path = params[:from].presence || calendar_month_path
+    redirect_path = params[:from].presence || reports_path
     if @report.save
       redirect_to redirect_path, notice: '日報が作成されました。'
     else
