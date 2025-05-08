@@ -117,6 +117,15 @@ document.addEventListener('click', function(e) {
   const td = e.target.closest('td.calendar-cell');
   if (!td) return;
 
+  // 編集ボタンがクリックされた場合
+  if (e.target.closest('.calendar-edit-btn')) {
+    const link = td.querySelector('a.report-date');
+    if (link && link.href) {
+      window.location.href = `${link.href}/edit`;
+      return;
+    }
+  }
+
   // aタグやbuttonがクリックされた場合は何もしない
   if (e.target.closest('a') || e.target.closest('button')) return;
 
