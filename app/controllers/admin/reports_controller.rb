@@ -1,5 +1,6 @@
 class Admin::ReportsController < Admin::BaseController
   before_action :set_report, only: %i[show destroy edit update]
+  before_action :set_admin_origins, only: %i[show edit destroy]
 
   def index
     start_date = params[:start_date]
@@ -33,9 +34,8 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def update
-    @report.update(report_params)
-    if @report.save
-      redirect_to admin_calendar_month_path, notice: "日報を更新しました。"
+    if @report.update(report_params)
+      redirect_to admin_report_path(@report), notice: '日報を更新しました。'
     else
       @admin_context = true
       flash.now[:alert] = @report.formatted_error_messages
@@ -44,9 +44,10 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def destroy
-    report_date = @report.report_date
     @report.destroy
-    redirect_to admin_calendar_day_path(date: report_date), notice: '日報が削除されました。'
+    # セッションにadmin_origin_level1があればそこに戻る。なければreferer、さらにダメならadmin_reports_path
+    redirect_to(session[:admin_origin_level1].presence || request.referer || admin_reports_path, notice: '日報が削除されました。')
+    session.delete(:admin_origin_level1)
   end
 
   private
@@ -54,6 +55,23 @@ class Admin::ReportsController < Admin::BaseController
   def set_report
     @report = Report.find_by(id: params[:id])
     not_found unless @report
+  end
+
+  def set_admin_origins
+    if action_name == 'show'
+      if params[:origin].present?
+        session[:admin_origin_level1] = params[:origin]
+      elsif request.referer&.include?(admin_calendar_month_path) ||
+            request.referer&.include?(admin_calendar_day_path) ||
+            (request.referer&.include?(admin_reports_path) && !request.referer&.include?('/edit'))
+        session[:admin_origin_level1] = request.referer
+      end
+      session.delete(:admin_origin_level2)
+    elsif action_name == 'edit'
+      session[:admin_origin_level2] = session[:admin_origin_level1]
+    end
+    @admin_origin_level1 = session[:admin_origin_level1]
+    @admin_origin_level2 = session[:admin_origin_level2]
   end
 
   def report_params
