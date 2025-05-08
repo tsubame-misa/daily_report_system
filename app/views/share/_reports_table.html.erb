@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th class="align-middle ps-3 col-title">タイトル</th>
-      <th class="align-middle">内容</th>
+      <th class="align-middle col-header-contents">内容</th>
       <% if admin %>
         <th class="align-middle col-author">作成者</th>
       <% end %>
@@ -19,22 +19,22 @@
   </thead>
   <tbody>
     <% reports.each do |report| %>
-      <tr>
-        <td class="text-truncate ps-3"><%= report.title %></td>
-        <td class="text-truncate col-contents"><%= report.contents %></td>
+      <tr class="cursor-pointer" onclick="handleRowClick(event, '<%= admin ? admin_report_path(report) : report_path(report) %>')">
+        <td class="ps-3"><%= report.title %></td>
+        <td><%= report.contents %></td>
         <% if admin %>
           <td><%= report.user&.name %></td>
         <% end %>
         <td><%= admin ? report.created_at.strftime("%H:%M") : report.report_date.strftime("%Y-%m-%d") %></td>
 
         <td class="d-flex align-items-center">
-          <div class="me-2">
+          <div class="me-2" onclick="event.stopPropagation();">
             <%= render partial: "reports/favorite", locals: { report: report, favorite: report.favorites.find_by(user_id: current_user.id) } %>
           </div>
-          <%= link_to admin ? edit_admin_report_path(report) : edit_report_path(report), class: "btn btn-link text-secondary p-0 me-2 icon-hover", title: "編集", "data-bs-toggle": "tooltip", "data-bs-placement": "top" do %>
+          <%= link_to admin ? edit_admin_report_path(report) : edit_report_path(report), class: "btn btn-link text-secondary p-0 me-2 icon-hover", title: "編集", "data-bs-toggle": "tooltip", "data-bs-placement": "top", onclick: "event.stopPropagation();" do %>
             <i class="bi bi-pencil-square fs-3"></i>
           <% end %>
-          <div data-controller="modal">
+          <div data-controller="modal" onclick="event.stopPropagation();">
             <button
               type="button"
               class="btn btn-link text-danger p-0 icon-hover"
@@ -52,3 +52,14 @@
     <% end %>
   </tbody>
 </table>
+
+<script>
+function handleRowClick(event, url) {
+  // ボタンやリンクがクリックされた場合は遷移しない
+  if (event.target.closest('button') || event.target.closest('a') || event.target.closest('[data-controller="modal"]')) {
+    return;
+  }
+  // それ以外の場合は遷移
+  window.location.href = url;
+}
+</script>
