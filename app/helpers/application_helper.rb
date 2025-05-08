@@ -24,7 +24,7 @@ module ApplicationHelper
     link_to url_for(base_params), class: 'd-flex align-items-center text-decoration-none favorite-only-toggle' do
       content_tag(:div, class: 'd-flex align-items-center gap-2') do
         content_tag(:div, class: 'form-check form-switch') do
-          content_tag(:input, '', type: 'checkbox', class: 'form-check-input form-switch-lg', checked: is_favorite) +
+          content_tag(:input, '', type: 'checkbox', class: 'form-check-input form-switch-lg cursor-pointer', checked: is_favorite) +
             content_tag(:div, class: 'd-flex align-items-center') do
               content_tag(:span, 'いいねのみ表示', class: 'text-dark')
             end

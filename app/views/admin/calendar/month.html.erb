@@ -61,9 +61,9 @@
                 <div class="report-item">
                   <%= link_to request.path.start_with?('/admin') ? admin_report_path(report) : report_path(report), class: "d-flex align-items-center gap-1" do %>
                     <% if defined?(current_user) && report.favorites.exists?(user_id: current_user.id) %>
-                      <i class="bi bi-heart-fill"></i>
+                      <i class="bi bi-suit-heart-fill text-danger"></i>
                     <% else %>
-                      <i class="bi bi-heart"></i>
+                      <i class="bi bi-suit-heart"></i>
                     <% end %>
                     <% if request.path.start_with?('/admin') %>
                       <span class="report-content"><%= report.user.name %></span>
