@@ -13,7 +13,9 @@ class Admin::CalendarController < Admin::BaseController
     # @favorite_only = ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
 
     @reports = Report.includes(:user)
-    @reports = @reports.where(report_date: @selected_date).keyword_search(params[:q]).sorted_by(sort, direction)
+    @reports = @reports.where(report_date: @selected_date)
+                       .keyword_search(params[:q], ["users.name, reports.title"])
+                       .sorted_by(sort, direction)
 
     return unless ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
 
@@ -49,7 +51,7 @@ class Admin::CalendarController < Admin::BaseController
     # 期間内の全レポートを取得
     all_reports = Report.includes(:user, :favorites)
                         .where(report_date: start_date.beginning_of_day..end_date.end_of_day)
-                        .keyword_search(params[:q])
+                        .keyword_search(params[:q], ["users.name"])
 
     if ActiveModel::Type::Boolean.new.cast(params[:favorite_only])
       favorite_report_ids = current_user.favorites.pluck(:report_id)

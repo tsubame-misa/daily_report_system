@@ -20,7 +20,7 @@ class ReportsController < ApplicationController
 
     @reports = @reports
                  .sorted_by(sort, direction)
-                 .keyword_search(keyword)
+                 .keyword_search(keyword, ["reports.title", "reports.contents"])
     if @favorite_only
       favorite_report_ids = current_user.favorites.pluck(:report_id)
       @reports = @reports.where(id: favorite_report_ids)
