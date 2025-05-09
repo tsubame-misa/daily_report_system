@@ -64,12 +64,20 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    # カレンダー日別画面からきた場合、キャンセル時の戻り先をその画面に設定
+    if request.referer&.include?('reports')
+      @cancel_path = request.referer
+    end
     render locals: { hide_sub_header: true }
   end
 
   def update
     if @report.update(report_params)
-      redirect_to report_path(@report), notice: '日報を更新しました。'
+      if request.referer&.include?('reports')
+        redirect_to reports_path, notice: '日報を更新しました。'
+      else
+        redirect_to report_path(@report), notice: '日報を更新しました。'
+      end
     else
       flash.now[:alert] = @report.formatted_error_messages
       render :edit, locals: { hide_sub_header: true }, status: :unprocessable_entity
