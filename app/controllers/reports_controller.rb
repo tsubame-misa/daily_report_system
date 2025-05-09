@@ -73,10 +73,7 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      if request.referer&.include?('reports')
-        redirect_to reports_path, notice: '日報を更新しました。'
-      else
-        redirect_to report_path(@report), notice: '日報を更新しました。'
+      redirect_to report_path(@report), notice: '日報を更新しました。'
       end
     else
       flash.now[:alert] = @report.formatted_error_messages
