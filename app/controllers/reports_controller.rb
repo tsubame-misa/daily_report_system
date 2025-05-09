@@ -74,7 +74,6 @@ class ReportsController < ApplicationController
   def update
     if @report.update(report_params)
       redirect_to report_path(@report), notice: '日報を更新しました。'
-      end
     else
       flash.now[:alert] = @report.formatted_error_messages
       render :edit, locals: { hide_sub_header: true }, status: :unprocessable_entity
