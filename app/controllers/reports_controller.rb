@@ -67,6 +67,8 @@ class ReportsController < ApplicationController
     # カレンダー日別画面からきた場合、キャンセル時の戻り先をその画面に設定
     if request.referer&.include?('reports')
       @cancel_path = request.referer
+    elsif request.referer&.include?('calendar')
+      @cancel_path = request.referer
     end
     render locals: { hide_sub_header: true }
   end
