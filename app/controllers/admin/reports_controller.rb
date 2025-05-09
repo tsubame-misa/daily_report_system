@@ -31,6 +31,10 @@ class Admin::ReportsController < Admin::BaseController
 
   def edit
     @admin_context = true
+    if request.referer&.include?('admin/calendar/day')
+      @cancel_path = request.referer
+      session[:return_to_admin_calendar] = request.referer
+    end
   end
 
   def update
