@@ -31,11 +31,21 @@ class Admin::ReportsController < Admin::BaseController
 
   def edit
     @admin_context = true
+    if request.referer&.include?('admin/calendar/day')
+      @cancel_path = request.referer
+      session[:return_to_admin_calendar] = request.referer
+    end
   end
 
   def update
     if @report.update(report_params)
-      redirect_to admin_report_path(@report), notice: '日報を更新しました。'
+      if session[:return_to_admin_calendar]
+        redirect_to session[:return_to_admin_calendar], notice: '日報を更新しました。'
+      else
+        redirect_to admin_report_path(@report), notice: '日報を更新しました。'
+      end
+      # end
+      # redirect_to admin_report_path(@report), notice: '日報を更新しました。'
     else
       @admin_context = true
       flash.now[:alert] = @report.formatted_error_messages
